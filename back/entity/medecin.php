@@ -59,7 +59,7 @@ class medecin
   }
 
   /**
-  * @param string
+  * @param string $nom
   */
   public function setNom($nom)
   {
@@ -75,7 +75,7 @@ class medecin
   }
 
   /**
-  * @param string
+  * @param string $prenom
   */
   public function setPrenom($prenom)
   {
@@ -91,7 +91,7 @@ class medecin
   }
 
   /**
-  * @param string
+  * @param string $id_specialite
   */
   public function setIdSpecialite($id_specialite)
   {
@@ -107,7 +107,7 @@ class medecin
   }
 
   /**
-  * @param string
+  * @param string $email
   */
   public function setEmail($email)
   {
@@ -123,7 +123,7 @@ class medecin
   }
 
   /**
-  * @param string
+  * @param string $telephone
   */
   public function setTelephone($telephone)
   {
@@ -139,7 +139,7 @@ class medecin
   }
 
   /**
-  * @param string
+  * @param string $lieu
   */
   public function setLieu($lieu)
   {
@@ -147,5 +147,5 @@ class medecin
   }
 
 
-  
+
 }

@@ -7,15 +7,15 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="29.0" y="188.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="17.5" y="184.5" />
   <SelectedNodes>
     <node>\user</node>
   </SelectedNodes>
   <Categories>
-    <Category>Methods</Category>
-    <Category>Constructors</Category>
-    <Category>Constants</Category>
     <Category>Fields</Category>
+    <Category>Constants</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
   </Categories>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>

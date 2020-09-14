@@ -3,7 +3,6 @@
 
 class dossier
 {
-  {
    /**
    * @var int
    */
@@ -184,5 +183,5 @@ class dossier
     }
 
 
-    
+
 }

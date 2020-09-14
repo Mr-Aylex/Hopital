@@ -63,7 +63,7 @@ class dossier
     }
 
     /**
-    * @param int
+    * @param int $id
     */
     public function setId($id)
     {
@@ -79,7 +79,7 @@ class dossier
     }
 
     /**
-    * @param int
+    * @param int $id_patient
     */
     public function setIdPatient($id_patient)
     {
@@ -95,7 +95,7 @@ class dossier
     }
 
     /**
-    * @param string
+    * @param string $email
     */
     public function setEmail($email)
     {
@@ -111,7 +111,7 @@ class dossier
     }
 
     /**
-    * @param string
+    * @param string $adresse_post
     */
     public function setAdressePost($adresse_post)
     {
@@ -127,7 +127,7 @@ class dossier
     }
 
     /**
-    * @param string
+    * @param string $mutuelle
     */
     public function setMutuelle($mutuelle)
     {
@@ -143,7 +143,7 @@ class dossier
     }
 
     /**
-    * @param string
+    * @param string $num_ss
     */
     public function setNumSS($num_ss)
     {
@@ -159,7 +159,7 @@ class dossier
     }
 
     /**
-    * @param string
+    * @param string $opt
     */
     public function setOpt($opt)
     {
@@ -175,7 +175,7 @@ class dossier
     }
 
     /**
-    * @param string
+    * @param string $regime
     */
     public function setRegime($regime)
     {

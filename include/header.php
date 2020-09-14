@@ -1,4 +1,6 @@
 <?php
+/**
+*/
 ?>
 
 <head>
@@ -62,6 +64,7 @@
                             <li><a href="/Hopital/web/blog.php" class="nav-link">Blog</a></li>
                             <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
+                            <li><a href="/Hopital/web/sign_in.php" class="nav-link">Sign in</a></li>
                         </ul>
                     </nav>
                 </div>

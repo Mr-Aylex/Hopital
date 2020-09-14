@@ -4,29 +4,29 @@
 class medecin
 {
  /**
-  *@var string
+ *@var string
  */
  protected $nom;
  /**
  *@var string
-  */
-  protected $prenom;
-  /**
-  *@var int
-  */
-  protected $id_specialite
-  /**
+ */
+ protected $prenom;
+ /**
+ *@var int
+ */
+ protected $id_specialite
+ /**
  *@var string
-  */
-  protected $email;
-  /**
-  *@var string
-  */
-  protected $telephone;
-  /**
-  *@var string
-  */
-  protected $lieu;
+ */
+ protected $email;
+ /**
+ *@var string
+ */
+ protected $telephone;
+ /**
+ *@var string
+ */
+ protected $lieu;
 
   /**
   * medecin constructor

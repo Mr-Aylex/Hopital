@@ -1,6 +1,7 @@
 <?php
 /**
 */
+session_start();
 ?>
 
 <head>
@@ -58,6 +59,8 @@
 
                     <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                          <?php
+                          if(!isset($_SESSION)) {?>
                             <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
                             <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
                             <li><a href="/Hopital/web/testimonials.php" class="nav-link">Testimonials</a></li>
@@ -65,6 +68,16 @@
                             <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
                             <li><a href="/Hopital/web/sign_in.php" class="nav-link">Sign in</a></li>
+                          <?php }
+                          if(isset($_SESSION)) {?>
+                            <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
+                            <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
+                            <li><a href="Hopital/web/testimonials.php" class="nav-link">Testimonials</a></li>
+                            <li><a href="/Hopital/web/blog.php" class="nav-link">Blog</a></li>
+                            <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>
+                            <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
+                            <li><a href="/Hopital/web/account.php" class="nav-link">My account</a></li>
+                          <?php } ?>
                         </ul>
                     </nav>
                 </div>

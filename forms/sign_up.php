@@ -9,65 +9,28 @@ include "../include/header.php";
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-8 intro text-center">
-        <h1 class="text-white">Connexion</h1>
-        <a href="/Hopital/index.php">Home</a> <span class="mx-3 text-white">/</span> <strong class="text-white">Connexion</strong>
+        <h1 class="text-white">Inscription</h1>
+        <a href="/Hopital/index.php">Home</a> <span class="mx-3 text-white">/</span> <strong class="text-white">Inscription</strong>
       </div>
     </div>
   </div>
 </div>
 
-<div class="services mb-5">
-  <div class="container-fluid px-0">
-    <div class="row no-gutters align-items-stretch">
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-acupuncture-2"></span>
-          </div>
-          <h3>Acupuncture</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-therapy"></span>
-          </div>
-          <h3>Therapy</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-acupuncture-1"></span>
-          </div>
-          <h3>Foot</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-herbal"></span>
-          </div>
-          <h3>Natural</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-acupuncture"></span>
-          </div>
-          <h3>Healing</h3>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="site-section bg-light" id="contact-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-5" >
         <form action="#" method="post">
+          <div class="form-group row">
+            <div class="col-md-6 mb-4 mb-lg-0">
+              <input type="text" class="form-control" name="nom" placeholder="Votre nom">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="prenom" placeholder="Votre prénom">
+            </div>
+          </div>
+
           <div class="form-group row">
             <div class="col-md-12">
               <input type="text" class="form-control" name="email" placeholder="Email address">
@@ -81,6 +44,12 @@ include "../include/header.php";
           </div>
 
           <div class="form-group row">
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="role" placeholder="Rôle">
+            </div>
+          </div>
+
+          <div class="form-group row">
             <div class="col-md-6 mr-auto">
               <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Valider">
             </div>
@@ -88,7 +57,7 @@ include "../include/header.php";
 
           <div class="form-group row">
             <div class="col-md-12">
-              <p>Pas encore inscrit ? <a href="/Hopital/web/sign_up.php">Se connecter</a></p>
+              <p>Vous êtes déjà inscrit ? <a href="/Hopital/forms/sign_in.php">Se connecter</a></p>
             </div>
           </div>
         </form>
@@ -108,7 +77,6 @@ include "../include/header.php";
       </div>
     </div>
   </div>
-
 
 <div class="site-section bg-primary py-5">
   <div class="container">

@@ -1,8 +1,4 @@
-<?php
-/**
-*/
-session_start();
-?>
+<?php session_start(); ?>
 
 <head>
     <title>Acupuncture &mdash; Free Website Template by Colorlib</title>

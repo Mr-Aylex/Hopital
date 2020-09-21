@@ -14,6 +14,6 @@ $new_user = new user((
 ));
 
 $manager = new manager();
-$manager->insert_user($user);
+$manager->insert_user($user = null);
 
 ?>

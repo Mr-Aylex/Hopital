@@ -68,10 +68,9 @@ include "../include/header.php";
 
 
 <?php
-include "include/footer.php";
+include "../include/footer.php";
 ?>
 
   </body>
 
   </html>
-

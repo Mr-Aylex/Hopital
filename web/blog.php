@@ -5,7 +5,7 @@
 include "../include/header.php";
 ?>
 
-      
+
       <div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">
         <div class="container">
           <div class="row align-items-center justify-content-center">
@@ -22,7 +22,7 @@ include "../include/header.php";
           <div class="row">
             <div class="col-lg-7 text-center mx-auto">
               <h2 class="section-heading"><strong>News &amp; Tips</strong></h2>
-              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>    
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
           </div>
           <div class="row">
@@ -33,10 +33,10 @@ include "../include/header.php";
                    class="img-fluid">
                 </a>
                 <div class="post-entry-1-contents">
-                  
+
                   <span class="meta d-inline-block">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
                   <h2><a href="single.php">Natural Healing For The Body</a></h2>
-                  
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
                 </div>
               </div>
@@ -48,10 +48,10 @@ include "../include/header.php";
                    class="img-fluid">
                 </a>
                 <div class="post-entry-1-contents">
-                  
+
                   <span class="meta d-inline-block">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
                   <h2><a href="single.php">Natural Healing For The Body</a></h2>
-                  
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
                 </div>
               </div>
@@ -63,10 +63,10 @@ include "../include/header.php";
                    class="img-fluid">
                 </a>
                 <div class="post-entry-1-contents">
-                  
+
                   <span class="meta d-inline-block">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
                   <h2><a href="single.php">Natural Healing For The Body</a></h2>
-                  
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
                 </div>
               </div>
@@ -79,10 +79,10 @@ include "../include/header.php";
                    class="img-fluid">
                 </a>
                 <div class="post-entry-1-contents">
-                  
+
                   <span class="meta d-inline-block">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
                   <h2><a href="single.php">Natural Healing For The Body</a></h2>
-                  
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
                 </div>
               </div>
@@ -94,10 +94,10 @@ include "../include/header.php";
                    class="img-fluid">
                 </a>
                 <div class="post-entry-1-contents">
-                  
+
                   <span class="meta d-inline-block">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
                   <h2><a href="single.php">Natural Healing For The Body</a></h2>
-                  
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
                 </div>
               </div>
@@ -109,10 +109,10 @@ include "../include/header.php";
                    class="img-fluid">
                 </a>
                 <div class="post-entry-1-contents">
-                  
+
                   <span class="meta d-inline-block">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
                   <h2><a href="single.php">Natural Healing For The Body</a></h2>
-                  
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
                 </div>
               </div>
@@ -151,9 +151,8 @@ include "../include/header.php";
 
 
 <?php
-include "include/footer.php";
+include "../include/footer.php";
 ?>
   </body>
 
 </html>
-

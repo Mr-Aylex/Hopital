@@ -5,7 +5,7 @@
 include "../include/header.php";
 ?>
 
-      
+
       <div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">
         <div class="container">
           <div class="row align-items-center justify-content-center">
@@ -22,7 +22,7 @@ include "../include/header.php";
           <div class="row">
             <div class="col-lg-7 text-center mx-auto">
               <h2 class="section-heading"><strong>Happy Customers</strong></h2>
-              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>    
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
           </div>
           <div class="row">
@@ -133,10 +133,9 @@ include "../include/header.php";
 
 
 <?php
-include "include/footer.php";
+include "../include/footer.php";
 ?>
 
   </body>
 
 </html>
-

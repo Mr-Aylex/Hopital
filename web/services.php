@@ -5,7 +5,7 @@
 include "../include/header.php";
 ?>
 
-      
+
       <div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">
         <div class="container">
           <div class="row align-items-center justify-content-center">
@@ -62,7 +62,7 @@ include "../include/header.php";
             </div>
           </div>
         </div>
-      </div> 
+      </div>
 
       <div class="site-section">
         <div class="container">
@@ -157,10 +157,9 @@ include "../include/header.php";
 
 
 <?php
-include "include/footer.php";
+include "../include/footer.php";
 ?>
 
   </body>
 
 </html>
-

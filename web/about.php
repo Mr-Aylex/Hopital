@@ -5,7 +5,7 @@
 include "../include/header.php";
 ?>
 
-      
+
       <div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">
         <div class="container">
           <div class="row align-items-center justify-content-center">
@@ -43,10 +43,10 @@ include "../include/header.php";
 
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="post-entry-1 h-100 person-1">
-              
+
                 <img src="images/person_1.jpg" alt="Image"
                  class="img-fluid">
-            
+
               <div class="post-entry-1-contents">
                 <span class="meta">Founder</span>
                 <h2>James Doe</h2>
@@ -56,10 +56,10 @@ include "../include/header.php";
           </div>
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="post-entry-1 h-100 person-1">
-              
+
                 <img src="images/person_2.jpg" alt="Image"
                  class="img-fluid">
-            
+
               <div class="post-entry-1-contents">
                 <span class="meta">Founder</span>
                 <h2>James Doe</h2>
@@ -70,10 +70,10 @@ include "../include/header.php";
 
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="post-entry-1 h-100 person-1">
-              
+
                 <img src="images/person_3.jpg" alt="Image"
                  class="img-fluid">
-            
+
               <div class="post-entry-1-contents">
                 <span class="meta">Founder</span>
                 <h2>James Doe</h2>
@@ -84,10 +84,10 @@ include "../include/header.php";
 
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="post-entry-1 h-100 person-1">
-              
+
                 <img src="images/person_4.jpg" alt="Image"
                  class="img-fluid">
-            
+
               <div class="post-entry-1-contents">
                 <span class="meta">Founder</span>
                 <h2>James Doe</h2>
@@ -98,10 +98,10 @@ include "../include/header.php";
 
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="post-entry-1 h-100 person-1">
-              
+
                 <img src="images/person_5.jpg" alt="Image"
                  class="img-fluid">
-            
+
               <div class="post-entry-1-contents">
                 <span class="meta">Founder</span>
                 <h2>James Doe</h2>
@@ -112,10 +112,10 @@ include "../include/header.php";
 
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="post-entry-1 h-100 person-1">
-              
+
                 <img src="images/person_1.jpg" alt="Image"
                  class="img-fluid">
-            
+
               <div class="post-entry-1-contents">
                 <span class="meta">Founder</span>
                 <h2>James Doe</h2>
@@ -161,9 +161,8 @@ include "../include/header.php";
 
 
 <?php
-include "include/footer.php";
+include "../include/footer.php";
 ?>
 
   </body>
 </html>
-

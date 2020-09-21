@@ -5,7 +5,7 @@
 include "../include/header.php";
 ?>
 
-      
+
       <div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">
         <div class="container">
           <div class="row align-items-center justify-content-center">
@@ -35,7 +35,7 @@ include "../include/header.php";
             <blockquote><p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p></blockquote>
 
             <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-            
+
             <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
 
 
@@ -127,7 +127,7 @@ include "../include/header.php";
                 </li>
               </ul>
               <!-- END comment-list -->
-              
+
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a comment</h3>
                 <form action="#" class="">
@@ -195,10 +195,9 @@ include "../include/header.php";
 
 
 <?php
-include "include/footer.php";
+include "../include/footer.php";
 ?>
 
   </body>
 
 </html>
-

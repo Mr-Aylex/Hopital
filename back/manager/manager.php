@@ -26,7 +26,7 @@ class manager
  {
      $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE email=:email');
      $request->execute(array($signin->getEmail()));
-     $result = $result->fetch();
+     $result = $request->fetch();
    if($result['email'] == $signin->getEmail() AND $result['pass'] == $signin->getPass())
    {
      $_SESSION['nom'] = $result['nom'];
@@ -83,7 +83,16 @@ class manager
      'pass' => $user->getPass(),
      'role' => $user->getRole()
    ));
-   header('Location : Hopital/index.php');
+   header('Location : ../index.php');
+ }
+
+ /**
+ * @param User $manager
+ * Add manager
+ */
+ public function add_manager(User $manager)
+ {
+   $request = $this->connexion_bdd()->prepare('')
  }
 
 }

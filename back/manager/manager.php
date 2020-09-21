@@ -35,7 +35,7 @@ class manager
      $_SESSION['email'] = $signin->getEmail();
      $_SESSION['pass'] = $signin->getPass();
      $_SESSION['role'] = $result['role'];
-     header('Location : ../index.php')
+     header('Location : ../index.php');
    }
    else
    {
@@ -51,11 +51,11 @@ class manager
  {
    $request = $this->connexion_bdd()->prepare('SELECT nom, prenom FROM utilisateur WHERE nom=:nom AND prenom=:prenom');
    $request->execute(array(
-     'nom' => getNom(),
-     'prenom' => getPrenom()
+     'nom' => $user->getNom(),
+     'prenom' => $user->getPrenom()
    ));
    $result = $request->fetch();
-   if($data)
+   if($result)
    {
      header(dirname($_SERVER['DOCUMENT_ROOT']). 'Hopital/forms/sign_up.php');
    } else {

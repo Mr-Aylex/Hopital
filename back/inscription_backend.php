@@ -2,8 +2,8 @@
 
 session_start();
 
-require 'Hopital/entity/user.php';
-require 'Hopital/manager/manager.php';
+require_once($_SERVER['DOCUMENT_ROOT'].'Hopital/back/entity/user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'Hopital/back/manager/manager.php');
 
 $new_user = new user((
   'nom' => $_POST['nom'],

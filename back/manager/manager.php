@@ -1,5 +1,6 @@
 <?php
 
+require_once($_SERVER['DOCUMENT_ROOT'].'Hopital/back/entity/user.php');
 
 class manager
 {
@@ -87,12 +88,37 @@ class manager
  }
 
  /**
+ * @param User $medecin
+ * Add doctors
+ */
+ public function add_medecin(User $medecin)
+ {
+   $request = $this->connexion_bdd()->prepare('INSERT INTO medecin (nom, prenom, id_specialite, email, telephone, lieu) VALUES (:nom, :prenom, :id_specialite, :email, :telephone, :lieu)');
+   $request->execute(array(
+     'nom' => $medecin->getNom(),
+     'prenom' => $medecin->getPrenom(),
+     'id_specialite' => $medecin->getIdSpecialite(),
+     'email' => $medecin->getEmail(),
+     'telephone' => $medecin->getTelephone(),
+     'lieu' => $medecin->getLieu()
+   ));
+ }
+
+ /**
  * @param User $manager
  * Add manager
  */
  public function add_manager(User $manager)
  {
-   $request = $this->connexion_bdd()->prepare('')
+   $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur (nom, prenom, email, pass, role) VALUES (:nom, :prenom, :email, :pass, :role)');
+   $request->execute(array(
+     'nom' => $manager->getNom(),
+     'prenom' => $manager->getPrenom(),
+     'email' => $manager->getEmail(),
+     'pass' => $manager->getPass(),
+     'role' => $manager->getRole()
+   ));
+   header('Location : ../admin.php');
  }
 
 }

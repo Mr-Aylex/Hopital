@@ -68,4 +68,22 @@ class manager
      ));
    }
  }
+
+/**
+* @param User $user
+* Modify user's information
+*/
+ public function modify(User $user)
+ {
+   $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, email=:email, pass=:pass, role=:role WHERE id=:id');
+   $request->execute(array(
+     'nom' => $user->getNom(),
+     'prenom' => $user->getPrenom(),
+     'email' => $user->getEmail(),
+     'pass' => $user->getPass(),
+     'role' => $user->getRole()
+   ));
+   header('Location : Hopital/index.php');
+ }
+
 }

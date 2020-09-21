@@ -14,7 +14,7 @@ class medecin
  /**
  *@var int
  */
- protected $specialite;
+ protected $id_specialite;
  /**
  *@var string
  */
@@ -85,17 +85,17 @@ class medecin
   /**
   * @return int
   */
-  public function getSpecialite()
+  public function getIdSpecialite()
   {
-    return $this->specialite;
+    return $this->id_specialite;
   }
 
   /**
   * @param string specialite
   */
-  public function setSpecialite($specialite)
+  public function setIdSpecialite($id_specialite)
   {
-    $this->specialite = $specialite;
+    $this->id_specialite = $id_specialite;
   }
 
   /**

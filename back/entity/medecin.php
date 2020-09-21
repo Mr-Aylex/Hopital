@@ -14,7 +14,7 @@ class medecin
  /**
  *@var int
  */
- protected $id_specialite
+ protected $id_specialite;
  /**
  *@var string
  */

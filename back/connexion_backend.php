@@ -10,6 +10,8 @@ $user = new user((
   'pass' => $_POST['pass']
 ));
 
+$_SESSION['email'] = $data['email'];
+
 $manager = new manager();
 $manager->connexion($signin);
  ?>

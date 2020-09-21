@@ -26,7 +26,7 @@ class manager
  {
      $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE email=:email');
      $request->execute(array($signin->getEmail()));
-     $result = $result->fetch();
+     $result = $request->fetch();
    if($result['email'] == $signin->getEmail() AND $result['pass'] == $signin->getPass())
    {
      $_SESSION['nom'] = $result['nom'];
@@ -68,4 +68,31 @@ class manager
      ));
    }
  }
+
+/**
+* @param User $user
+* Modify user's information
+*/
+ public function modify(User $user)
+ {
+   $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, email=:email, pass=:pass, role=:role WHERE id=:id');
+   $request->execute(array(
+     'nom' => $user->getNom(),
+     'prenom' => $user->getPrenom(),
+     'email' => $user->getEmail(),
+     'pass' => $user->getPass(),
+     'role' => $user->getRole()
+   ));
+   header('Location : ../index.php');
+ }
+
+ /**
+ * @param User $manager
+ * Add manager
+ */
+ public function add_manager(User $manager)
+ {
+   $request = $this->connexion_bdd()->prepare('')
+ }
+
 }

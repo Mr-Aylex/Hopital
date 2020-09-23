@@ -88,6 +88,12 @@ include "../include/header.php";
 
           <div class="form-group row">
             <div class="col-md-12">
+              <a href="/Hopital/forms/forgotten_pass.php">Mot de passe oublié ?</a>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-12">
               <p>Pas encore inscrit ? <a href="/Hopital/forms/sign_up.php">Se connecter</a></p>
             </div>
           </div>

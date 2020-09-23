@@ -59,12 +59,13 @@ class manager
    {
      header(dirname($_SERVER['DOCUMENT_ROOT']). 'Hopital/forms/sign_up.php');
    } else {
+     $pass_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT, 'cost' => 15);
      $request = $this->connexion_bdd->prepare('INSERT INTO utilisateur(nom, prenom, email, pass, role) VALUES (:nom, :prenom, :email, :pass, :role)');
      $request->execute(array(
        'nom' => $user->getNom(),
        'prenom' => $user->getPrenom(),
        'email' => $user->getEmail(),
-       'pass' => $user->getPass(),
+       'pass' => password_hash($user->getPass()),
        'role' => $user->getRole()
      ));
    }

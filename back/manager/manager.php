@@ -89,6 +89,21 @@ class manager
  }
 
  /**
+* @param User $user
+* Forgotten password
+*/
+public function new_pass(User $user)
+{
+  $pass_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT, 'cost' => 15);
+  $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET pass=:pass WHERE email=:email');
+  $request->execute(array(
+    'pass' => password_hash($user->getPass()),
+    'email' => $user->getEmail()
+  ));
+  header('Location : ../index.php');
+}
+
+ /**
  * @param User $medecin
  * Add doctors
  */

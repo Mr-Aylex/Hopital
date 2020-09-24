@@ -82,7 +82,7 @@ include "../include/header.php";
 
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="password" class="form-control" name="pass" placeholder="Retaper votre nouveau mot de passe">
+              <input type="password" class="form-control" name="new_pass" placeholder="Retaper votre nouveau mot de passe">
             </div>
           </div>
 

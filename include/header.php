@@ -73,6 +73,7 @@
                             <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
                             <li><a href="/Hopital/web/account.php" class="nav-link">My account</a></li>
+                            <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link">Sign out</a></li>
                           <?php } ?>
                         </ul>
                     </nav>

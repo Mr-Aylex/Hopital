@@ -59,6 +59,7 @@
                           if(empty($_SESSION)) {?>
                             <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
                             <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
+                            <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>
                             <li><a href="/Hopital/web/testimonials.php" class="nav-link">Testimonials</a></li>
                             <li><a href="/Hopital/web/blog.php" class="nav-link">Blog</a></li>
                             <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>
@@ -68,6 +69,7 @@
                           if(isset($_SESSION['email'])) {?>
                             <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
                             <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
+                            <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>
                             <li><a href="Hopital/web/testimonials.php" class="nav-link">Testimonials</a></li>
                             <li><a href="/Hopital/web/blog.php" class="nav-link">Blog</a></li>
                             <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>

@@ -94,7 +94,7 @@ include "../include/header.php";
 
           <div class="form-group row">
             <div class="col-md-12">
-              <p>Pas encore inscrit ? <a href="/Hopital/forms/sign_up.php">Se connecter</a></p>
+              <p>Pas encore inscrit ? <a href="/Hopital/forms/sign_up.php">S'inscrire</a></p>
             </div>
           </div>
         </form>

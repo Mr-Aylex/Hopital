@@ -26,10 +26,10 @@ class manager
 */
  public function connexion(User $signin)
  {
-     $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE email=:email');
-     $request->execute(array($signin->getEmail()));
+     $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE mail=:mail');
+     $request->execute(array($signin->getMail()));
      $result = $request->fetch();
-   if($result['email'] == $signin->getEmail() AND $result['pass'] == $signin->getPass())
+   if($result['mail'] == $signin->getMail() AND $result['mdp'] == $signin->getMdp())
    {
      $_SESSION['user'] = serialize($signin);
      header('Location : ../index.php');
@@ -66,8 +66,9 @@ class manager
            }
        }
        var_dump($tab);
-     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp,role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
+     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
      $request->execute($tab);
+     header('Location: ../forms/sign_in.php');
    }
  }
 
@@ -77,27 +78,27 @@ class manager
 */
  public function modify(User $user)
  {
-   $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, email=:email, pass=:pass, role=:role WHERE id=:id');
+   $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, mail=:mail, mdp=:mdp, role_user=:role_user WHERE id=:id');
    $request->execute(array(
      'nom' => $user->getNom(),
      'prenom' => $user->getPrenom(),
-     'email' => $user->getEmail(),
-     'pass' => $user->getPass(),
-     'role' => $user->getRoleUser()
+     'mail' => $user->getmail(),
+     'mdp' => $user->getmdp(),
+     'role_user' => $user->getRole_User()
    ));
    header('Location : ../index.php');
  }
 
  /**
 * @param User $user
-* Forgotten password
+* Forgotten mdpword
 */
-public function new_pass(User $user)
+public function new_mdp(User $user)
 {
-  $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET pass=:pass WHERE email=:email');
+  $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET mdp=:mdp WHERE mail=:mail');
   $request->execute(array(
-    'pass' => md5($user->getPass()),
-    'email' => $user->getEmail()
+    'mdp' => md5($user->getMdp()),
+    'mail' => $user->getMail()
   ));
   header('Location : ../index.php');
 }
@@ -108,9 +109,9 @@ public function new_pass(User $user)
 */
 public function add_dossier(User $user)
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients INNER JOIN utilisateur ON utilisateur.id = dossier_patients.id');
+  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients WHERE id=:id');
   $request->execute(array(
-    'email' => $user->getEmail()
+    'mail' => $user->getMail()
   ));
   $result = $request->fetch();
   if($result)
@@ -119,9 +120,9 @@ public function add_dossier(User $user)
   }
   else
   {
-    $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (email, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:email, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
+    $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (mail, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:mail, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
     $request->execute(array(
-      'email' => $user->getEmail(),
+      'mail' => $user->getMail(),
       'adresse_post' => $user->getAdressePost(),
       'mutuelle' => $user->getNumSS(),
       'opt' => $user->getOpt(),
@@ -136,12 +137,12 @@ public function add_dossier(User $user)
  */
  public function add_medecin(User $medecin)
  {
-   $request = $this->connexion_bdd()->prepare('INSERT INTO medecin (nom, prenom, id_specialite, email, telephone, lieu) VALUES (:nom, :prenom, :id_specialite, :email, :telephone, :lieu)');
+   $request = $this->connexion_bdd()->prepare('INSERT INTO medecin (nom, prenom, id_specialite, mail, telephone, lieu) VALUES (:nom, :prenom, :id_specialite, :mail, :telephone, :lieu)');
    $request->execute(array(
      'nom' => $medecin->getNom(),
      'prenom' => $medecin->getPrenom(),
      'id_specialite' => $medecin->getIdSpecialite(),
-     'email' => $medecin->getEmail(),
+     'mail' => $medecin->getmail(),
      'telephone' => $medecin->getTelephone(),
      'lieu' => $medecin->getLieu()
    ));
@@ -153,13 +154,13 @@ public function add_dossier(User $user)
  */
  public function add_manager(User $manager)
  {
-   $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur (nom, prenom, email, pass, role) VALUES (:nom, :prenom, :email, :pass, :role)');
+   $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur (nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
    $request->execute(array(
      'nom' => $manager->getNom(),
      'prenom' => $manager->getPrenom(),
-     'email' => $manager->getEmail(),
-     'pass' => $manager->getPass(),
-     'role' => $manager->getRoleUser()
+     'mail' => $manager->getmail(),
+     'mdp' => $manager->getmdp(),
+     'role_user' => $manager->getrole_userUser()
    ));
    header('Location : ../admin.php');
  }

@@ -4,6 +4,18 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
 
 class manager
 {
+ public function getmethod($class)
+ {
+     $tab = array();
+     foreach (get_class_methods($class) as $key => $value)
+     {
+         if (strstr($value,'get')) {
+             $nom = strtolower(substr($value,3));
+             $tab[$nom] = $class->$value();
+         }
+     }
+     return $tab;
+ }
 /**
 * Connecting to database
 */
@@ -57,17 +69,9 @@ class manager
    {
      header(dirname($_SERVER['DOCUMENT_ROOT']). '/Hopital/forms/sign_up.php');
    } else {
-       $tab = array();
-       foreach (get_class_methods(User::class) as $key => $value)
-       {
-           if (strstr($value,'get')) {
-               $nom = strtolower(substr($value,3));
-                $tab[$nom] = $user->$value();
-           }
-       }
-       var_dump($tab);
+
      $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
-     $request->execute($tab);
+     $request->execute($this->getmethod());
      header('Location: ../forms/sign_in.php');
    }
  }
@@ -79,13 +83,7 @@ class manager
  public function modify(User $user)
  {
    $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, mail=:mail, mdp=:mdp, role_user=:role_user WHERE id=:id');
-   $request->execute(array(
-     'nom' => $user->getNom(),
-     'prenom' => $user->getPrenom(),
-     'mail' => $user->getmail(),
-     'mdp' => $user->getmdp(),
-     'role_user' => $user->getRole_User()
-   ));
+   $request->execute($this->getmethod());
    header('Location : ../index.php');
  }
 
@@ -149,18 +147,18 @@ public function add_dossier(User $user)
  }
 
  /**
- * @param User $manager
+ * @param User $administrateur
  * Add manager
  */
- public function add_manager(User $manager)
+ public function add_administrateur(User $administrateur)
  {
    $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur (nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
    $request->execute(array(
-     'nom' => $manager->getNom(),
-     'prenom' => $manager->getPrenom(),
-     'mail' => $manager->getmail(),
-     'mdp' => $manager->getmdp(),
-     'role_user' => $manager->getrole_userUser()
+     'nom' => $administrateur->getNom(),
+     'prenom' => $administrateur->getPrenom(),
+     'mail' => $administrateur->getmail(),
+     'mdp' => $administrateur->getmdp(),
+     'role_user' => $administrateur->getrole_userUser()
    ));
    header('Location : ../admin.php');
  }

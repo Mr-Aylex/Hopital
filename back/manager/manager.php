@@ -97,6 +97,34 @@ public function new_pass(User $user)
   header('Location : ../index.php');
 }
 
+/**
+* @param User $user
+* Add user's folder
+*/
+public function add_dossier(User $user)
+{
+  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients INNER JOIN utilisateur ON utilisateur.id = dossier_patients.id');
+  $request->execute(array(
+    'email' => $user->getEmail()
+  ));
+  $result = $request->fetch();
+  if($result)
+  {
+    header('Location : ../index.php');
+  }
+  else
+  {
+    $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (email, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:email, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
+    $request->execute(array(
+      'email' => $user->getEmail(),
+      'adresse_post' => $user->getAdressePost(),
+      'mutuelle' => $user->getNumSS(),
+      'opt' => $user->getOpt(),
+      'regime' => $user->getRegime()
+    ));
+  }
+}
+
  /**
  * @param User $medecin
  * Add doctors

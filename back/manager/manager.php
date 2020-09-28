@@ -30,11 +30,7 @@ class manager
      $result = $request->fetch();
    if($result['email'] == $signin->getEmail() AND $result['pass'] == $signin->getPass())
    {
-     $_SESSION['nom'] = $result['nom'];
-     $_SESSION['prenom'] = $result['prenom'];
-     $_SESSION['email'] = $signin->getEmail();
-     $_SESSION['pass'] = $signin->getPass();
-     $_SESSION['role'] = $result['role'];
+     $_SESSION['user'] = serialize($signin);
      header('Location : ../index.php');
    }
    else
@@ -65,7 +61,7 @@ class manager
        'nom' => $user->getNom(),
        'prenom' => $user->getPrenom(),
        'email' => $user->getEmail(),
-       'pass' => password_hash($user->getPass()),
+       'pass' => md5($user->getPass()),
        'role' => $user->getRole()
      ));
    }

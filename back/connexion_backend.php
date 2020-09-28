@@ -15,5 +15,5 @@ $user = new user(array(
 //$_SESSION['email'] = $data['email'];
 
 $manager = new manager();
-$manager->connexion($signin = null);
+$manager->connexion(unserialize($signin));
  ?>

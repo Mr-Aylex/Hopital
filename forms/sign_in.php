@@ -67,7 +67,7 @@ include "../include/header.php";
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-5" >
-        <form action="#" method="post">
+        <form action="../back/connexion_backend.php" method="post">
           <div class="form-group row">
             <div class="col-md-12">
               <input type="text" class="form-control" name="mail" placeholder="Email address">

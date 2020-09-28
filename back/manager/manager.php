@@ -53,7 +53,7 @@ class manager
    $result = $request->fetch();
    if($result)
    {
-     header(dirname($_SERVER['DOCUMENT_ROOT']). 'Hopital/forms/sign_up.php');
+     header(dirname($_SERVER['DOCUMENT_ROOT']). '/Hopital/forms/sign_up.php');
    } else {
      $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, email, pass, role) VALUES (:nom, :prenom, :email, :pass, :role)');
      $request->execute(array(

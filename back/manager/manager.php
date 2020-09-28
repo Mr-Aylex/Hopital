@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'Hopital/back/entity/user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
 
 class manager
 {
@@ -17,6 +17,7 @@ class manager
    {
      die('Error :' .$e->getMessage());
    }
+   return $bdd;
 }
 
 /**
@@ -45,6 +46,7 @@ class manager
 */
  public function insert_user(User $user)
  {
+     var_dump($user);
    $request = $this->connexion_bdd()->prepare('SELECT nom, prenom FROM utilisateur WHERE nom=:nom AND prenom=:prenom');
    $request->execute(array(
      'nom' => $user->getNom(),
@@ -55,13 +57,12 @@ class manager
    {
      header(dirname($_SERVER['DOCUMENT_ROOT']). 'Hopital/forms/sign_up.php');
    } else {
-     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, email, pass, role) VALUES (:nom, :prenom, :email, :pass, :role)');
+     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
      $request->execute(array(
        'nom' => $user->getNom(),
        'prenom' => $user->getPrenom(),
-       'email' => $user->getEmail(),
-       'pass' => md5($user->getPass()),
-       'role' => $user->getRole()
+       'mail' => $user->getMail(),
+       'mdp' => md5($user->getMdp()),
      ));
    }
  }

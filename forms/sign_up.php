@@ -18,10 +18,9 @@ include "../include/header.php";
 
 
 <div class="site-section bg-light" id="contact-section">
-  <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-5" >
-        <form action="#" method="post">
+        <form action="../back/inscription_backend.php" method="post">
           <div class="form-group row">
             <div class="col-md-6 mb-4 mb-lg-0">
               <input type="text" class="form-control" name="nom" placeholder="Votre nom">
@@ -33,13 +32,13 @@ include "../include/header.php";
 
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="text" class="form-control" name="email" placeholder="Email address">
+              <input type="text" class="form-control" name="mail" placeholder="Email address">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="password" class="form-control" name="pass" placeholder="Mot de passe">
+              <input type="password" class="form-control" name="mdp" placeholder="Mot de passe">
             </div>
           </div>
 
@@ -75,7 +74,6 @@ include "../include/header.php";
           </div>
         </div>
       </div>
-    </div>
   </div>
 
 <div class="site-section bg-primary py-5">

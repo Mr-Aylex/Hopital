@@ -70,13 +70,13 @@ include "../include/header.php";
         <form action="#" method="post">
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="text" class="form-control" name="email" placeholder="Email address">
+              <input type="text" class="form-control" name="mail" placeholder="Email address">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="password" class="form-control" name="pass" placeholder="Mot de passe">
+              <input type="password" class="form-control" name="mdp" placeholder="Mot de passe">
             </div>
           </div>
 

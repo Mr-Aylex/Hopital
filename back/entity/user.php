@@ -24,7 +24,7 @@ class user
     /**
      * @var string
      */
-    protected $role;
+    protected $role_user;
 
     /**
      * user constructor.
@@ -115,17 +115,17 @@ class user
     /**
      * @return string
      */
-    public function getRole()
+    public function getRole_user()
     {
-        return $this->role;
+        return $this->role_user;
     }
 
     /**
-     * @param string $role
+     * @param string $role_user
      */
-    public function setRole($role)
+    public function setRole_user($role_user)
     {
-        $this->role = $role;
+        $this->role_user = $role_user;
     }
 
 

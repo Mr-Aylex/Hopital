@@ -46,24 +46,28 @@ class manager
 */
  public function insert_user(User $user)
  {
-     var_dump($user);
    $request = $this->connexion_bdd()->prepare('SELECT nom, prenom FROM utilisateur WHERE nom=:nom AND prenom=:prenom');
    $request->execute(array(
      'nom' => $user->getNom(),
      'prenom' => $user->getPrenom()
    ));
    $result = $request->fetch();
-   if($result)
+   if (1==0)
+   //if($result)
    {
      header(dirname($_SERVER['DOCUMENT_ROOT']). '/Hopital/forms/sign_up.php');
    } else {
-     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
-     $request->execute(array(
-       'nom' => $user->getNom(),
-       'prenom' => $user->getPrenom(),
-       'mail' => $user->getMail(),
-       'mdp' => md5($user->getMdp()),
-     ));
+       $tab = array();
+       foreach (get_class_methods(User::class) as $key => $value)
+       {
+           if (strstr($value,'get')) {
+               $nom = strtolower(substr($value,3));
+                $tab[$nom] = $user->$value();
+           }
+       }
+       var_dump($tab);
+     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp,role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
+     $request->execute($tab);
    }
  }
 
@@ -79,7 +83,7 @@ class manager
      'prenom' => $user->getPrenom(),
      'email' => $user->getEmail(),
      'pass' => $user->getPass(),
-     'role' => $user->getRole()
+     'role' => $user->getRoleUser()
    ));
    header('Location : ../index.php');
  }
@@ -155,7 +159,7 @@ public function add_dossier(User $user)
      'prenom' => $manager->getPrenom(),
      'email' => $manager->getEmail(),
      'pass' => $manager->getPass(),
-     'role' => $manager->getRole()
+     'role' => $manager->getRoleUser()
    ));
    header('Location : ../admin.php');
  }

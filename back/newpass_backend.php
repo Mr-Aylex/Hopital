@@ -45,6 +45,4 @@ try {
 $manager = new manager();
 $manager->new_pass($user = null);
 */
-$methode = get_class_methods(user::class);
-var_dump($methode);
 ?>

@@ -6,6 +6,10 @@
 class user
 {
     /**
+     * @var int
+     */
+    protected $id;
+    /**
      * @var string
      */
     protected $nom;
@@ -126,6 +130,22 @@ class user
     public function setRole_user($role_user)
     {
         $this->role_user = $role_user;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
 

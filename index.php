@@ -35,7 +35,7 @@ include "include/header.php";
                 <div class="icon-wrap">
                   <span class="flaticon-acupuncture-2"></span>
                 </div>
-                <h3>Acupuncture</h3>
+                <h3>Urgence</h3>
               </a>
             </div>
             <div class="col-6 col-sm-6 col-md col-lg h-100">
@@ -43,7 +43,7 @@ include "include/header.php";
                 <div class="icon-wrap">
                   <span class="flaticon-therapy"></span>
                 </div>
-                <h3>Therapy</h3>
+                <h3>Chirugie</h3>
               </a>
             </div>
             <div class="col-6 col-sm-6 col-md col-lg h-100">
@@ -51,7 +51,7 @@ include "include/header.php";
                 <div class="icon-wrap">
                   <span class="flaticon-acupuncture-1"></span>
                 </div>
-                <h3>Foot</h3>
+                <h3>Imagerie et scanaire</h3>
               </a>
             </div>
             <div class="col-6 col-sm-6 col-md col-lg h-100">
@@ -59,7 +59,7 @@ include "include/header.php";
                 <div class="icon-wrap">
                   <span class="flaticon-herbal"></span>
                 </div>
-                <h3>Natural</h3>
+                <h3>Consultation</h3>
               </a>
             </div>
             <div class="col-6 col-sm-6 col-md col-lg h-100">

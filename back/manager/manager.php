@@ -36,13 +36,18 @@ class manager
 * @param User $signin
 * Allows to users to sign in
 */
- public function connexion(User $signin)
+ public function connexion($signin)
  {
-     $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE mail=:mail');
-     $request->execute(array($signin->getMail()));
+     var_dump($signin);
+     $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE mail=:mail and mdp=:mdp');
+     $request->execute(array(
+         'mail' => $signin->getMail(),
+         'mdp' => $signin->getMdp()
+     ));
      $result = $request->fetch();
-   if($result['mail'] == $signin->getMail() AND $result['mdp'] == $signin->getMdp())
+   if(!$result)
    {
+       session_start();
      $_SESSION['user'] = serialize($signin);
      header('Location : ../index.php');
    }
@@ -102,31 +107,20 @@ public function new_mdp(User $user)
 }
 
 /**
-* @param User $user
+* @param Dossier
 * Add user's folder
 */
-public function add_dossier(User $user)
+public function add_dossier(Dossier $dossier)
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients WHERE id=:id');
-  $request->execute(array(
-    'mail' => $user->getMail()
-  ));
-  $result = $request->fetch();
-  if($result)
-  {
-    header('Location : ../index.php');
-  }
-  else
-  {
-    $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (mail, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:mail, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
+    $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (id_patient, mail, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:id_patient, :mail, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
     $request->execute(array(
-      'mail' => $user->getMail(),
-      'adresse_post' => $user->getAdressePost(),
-      'mutuelle' => $user->getNumSS(),
-      'opt' => $user->getOpt(),
-      'regime' => $user->getRegime()
+        'mail' => $dossier->getMail(),
+        'adresse_post' => $dossier->getAdressePost(),
+        'mutuelle' => $dossier->getMutuelle(),
+        'num_ss' => $dossier->getNumSS(),
+        'opt' => $dossier->getOpt(),
+        'regime' => $dossier->getRegime()
     ));
-  }
 }
 
  /**

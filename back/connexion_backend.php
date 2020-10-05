@@ -6,10 +6,17 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
-var_dump($_POST);
-$user = new user($_POST);
-var_dump($user);
+$signin = new user($_POST);
 $manager = new manager();
-$manager->connexion($user);
+$res = $manager->connexion($signin);
+var_dump($res);
+if ($res) {
+ session_start();
+ $_SESSION['user'] = serialize($res);
+ header('Location: ../index.php');
+}
+else {
+ header('Location: ../forms/sign_in.php');
+}
 
  ?>

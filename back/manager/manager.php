@@ -11,9 +11,12 @@ class manager
      {
          if (strstr($value,'get')) {
              $nom = strtolower(substr($value,3));
-             $tab[$nom] = $class->$value();
+             if (!is_null($class->$value())) {
+                 $tab[$nom] = $class->$value();
+             }
          }
      }
+     var_dump($tab);
      return $tab;
  }
 /**
@@ -38,23 +41,16 @@ class manager
 */
  public function connexion($signin)
  {
-     var_dump($signin);
      $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE mail=:mail and mdp=:mdp');
-     $request->execute(array(
-         'mail' => $signin->getMail(),
-         'mdp' => $signin->getMdp()
-     ));
+     $request->execute($this->getmethod($signin));
      $result = $request->fetch();
-   if(!$result)
-   {
-       session_start();
-     $_SESSION['user'] = serialize($signin);
-     header('Location : ../index.php');
-   }
-   else
-   {
-    header('Location : ../index.php');
-   }
+     if ($result) {
+         $user = new user($result);
+         return $user;
+     }
+     else {
+         return null;
+     }
  }
 
 /**
@@ -75,8 +71,9 @@ class manager
      header(dirname($_SERVER['DOCUMENT_ROOT']). '/Hopital/forms/sign_up.php');
    } else {
 
-     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
-     $request->execute($this->getmethod());
+     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
+     var_dump($user);
+     $request->execute($this->getmethod($user));
      header('Location: ../forms/sign_in.php');
    }
  }

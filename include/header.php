@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 
 <head>
     <title>Acupuncture &mdash; Free Website Template by Colorlib</title>
@@ -56,7 +56,7 @@
                     <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav ml-auto ">
                           <?php
-                          if(empty($_SESSION)) {?>
+                          if(empty($_SESSION['user'])) {?>
                             <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
                             <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
                             <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>
@@ -66,7 +66,7 @@
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
                             <li><a href="/Hopital/forms/sign_in.php" class="nav-link">Sign in</a></li>
                           <?php }
-                          if(isset($_SESSION['email'])) {?>
+                          if(isset($_SESSION['user'])) {?>
                             <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
                             <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
                             <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>

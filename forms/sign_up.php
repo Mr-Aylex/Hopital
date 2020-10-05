@@ -57,8 +57,8 @@ include "../include/header.php";
           </div>
         </form>
       </div>
+    </div>
   </div>
- </div>
 </div>
 
 <div class="site-section bg-primary py-5">

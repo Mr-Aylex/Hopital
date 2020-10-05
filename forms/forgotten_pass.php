@@ -70,19 +70,19 @@ include "../include/header.php";
         <form action="#" method="post">
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="text" class="form-control" name="email" placeholder="Email address">
+              <input type="email" class="form-control" name="email" placeholder="Email address" required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="password" class="form-control" name="pass" placeholder="Nouveau mot de passe">
+              <input type="password" class="form-control" name="pass" placeholder="Nouveau mot de passe" minlength="12" maxlength="80" required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="password" class="form-control" name="new_pass" placeholder="Retaper votre nouveau mot de passe">
+              <input type="password" class="form-control" name="new_pass" placeholder="Retaper votre nouveau mot de passe" minlength="12" maxlength="80" required>
             </div>
           </div>
 

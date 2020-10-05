@@ -86,7 +86,7 @@ class manager
  {
    $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, mail=:mail, mdp=:mdp, role_user=:role_user WHERE id=:id');
    $request->execute($this->getmethod());
-   header('Location : ../index.php');
+   header('Location: ../index.php');
  }
 
  /**
@@ -100,7 +100,7 @@ public function new_mdp(User $user)
     'mdp' => md5($user->getMdp()),
     'mail' => $user->getMail()
   ));
-  header('Location : ../index.php');
+  header('Location: ../index.php');
 }
 
 /**
@@ -151,7 +151,7 @@ public function add_dossier(Dossier $dossier)
      'mdp' => $administrateur->getmdp(),
      'role_user' => $administrateur->getrole_userUser()
    ));
-   header('Location : ../admin.php');
+   header('Location: ../admin.php');
  }
 
 }

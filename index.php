@@ -10,8 +10,7 @@ include "include/header.php";
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-8 intro text-center">
-              <h1 class="text-white"><strong class="text-primary">Improve</strong> your overall health.</h1>
-                  <div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem praesentium ad, repellendus consequatur ab ut fuga veritatis reiciendis. Vitae, possimus.</div>
+              <h1 class="text-white"><strong class="text-primary">Soignez vous</strong> dans les meilleurs conditions.</h1>
 
                   <div class="col-lg-8 mx-auto">
                     <a href="https://vimeo.com/342333493" data-fancybox class=" play-now mx-auto">
@@ -33,41 +32,35 @@ include "include/header.php";
             <div class="col-6 col-sm-6 col-md col-lg h-100">
               <a href="#" class="service">
                 <div class="icon-wrap">
-                  <span class="flaticon-acupuncture-2"></span>
+                    <!--<span class="flaticon-acupuncture-2"></span>-->
+                  </div>
+                  <h3>Urgence</h3>
+                </a>
+              </div>
+              <div class="col-6 col-sm-6 col-md col-lg h-100">
+                <a href="#" class="service">
+                  <div class="icon-wrap">
+                      <!--<span class="flaticon-therapy"></span>-->
+                    </div>
+                    <h3>Chirugie</h3>
+                  </a>
                 </div>
-                <h3>Urgence</h3>
-              </a>
-            </div>
-            <div class="col-6 col-sm-6 col-md col-lg h-100">
-              <a href="#" class="service">
-                <div class="icon-wrap">
-                  <span class="flaticon-therapy"></span>
-                </div>
-                <h3>Chirugie</h3>
-              </a>
-            </div>
-            <div class="col-6 col-sm-6 col-md col-lg h-100">
-              <a href="#" class="service">
-                <div class="icon-wrap">
-                  <span class="flaticon-acupuncture-1"></span>
-                </div>
-                <h3>Imagerie et scanaire</h3>
-              </a>
-            </div>
-            <div class="col-6 col-sm-6 col-md col-lg h-100">
-              <a href="#" class="service">
-                <div class="icon-wrap">
-                  <span class="flaticon-herbal"></span>
+                <div class="col-6 col-sm-6 col-md col-lg h-100">
+                  <a href="#" class="service">
+                    <div class="icon-wrap">
+                        <!--<span class="flaticon-acupuncture-1"></span>-->
+                      </div>
+                      <h3>Imagerie et scanaire</h3>
+                    </a>
+                  </div>
+                  <div class="col-6 col-sm-6 col-md col-lg h-100">
+                    <a href="#" class="service">
+                      <div class="icon-wrap">
+                        <!--<span class="flaticon-herbal"></span>-->
                 </div>
                 <h3>Consultation</h3>
               </a>
             </div>
-            <div class="col-6 col-sm-6 col-md col-lg h-100">
-              <a href="#" class="service">
-                <div class="icon-wrap">
-                  <span class="flaticon-acupuncture"></span>
-                </div>
-                <h3>Healing</h3>
               </a>
             </div>
           </div>
@@ -75,7 +68,7 @@ include "include/header.php";
       </div> 
       
       
-      
+ <!--
       <div class="site-section">
         <div class="container">
           <div class="row align-items-center">
@@ -273,7 +266,7 @@ include "include/header.php";
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
 
 

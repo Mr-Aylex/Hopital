@@ -45,7 +45,7 @@
 
                 <div class="col-3">
                     <div class="site-logo">
-                        <a href="/Hopital/index.php">Acupuncture<span class="text-primary">.</span> </a>
+                        <a href="/Hopital/index.php">Notre hopital<span class="text-primary">.</span> </a>
                     </div>
                 </div>
 
@@ -59,23 +59,20 @@
                           if(empty($_SESSION['user'])) {?>
                             <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
                             <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
-                            <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>
-                            <li><a href="/Hopital/web/testimonials.php" class="nav-link">Testimonials</a></li>
-                            <li><a href="/Hopital/web/blog.php" class="nav-link">Blog</a></li>
-                            <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>
+                            <li><a href="/Hopital/web/Medecin.php" class="nav-link">Docteurs</a></li>
+                            <li><a href="/Hopital/web/about.php" class="nav-link">Nous</a></li>
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
-                            <li><a href="/Hopital/forms/sign_in.php" class="nav-link">Sign in</a></li>
+                            <li><a href="/Hopital/forms/sign_in.php" class="nav-link">Connexion</a></li>
+                            <li><a href="/Hopital/forms/sign_up.php" class="nav-link">Inscription</a></li>
                           <?php }
                           if(isset($_SESSION['user'])) {?>
                             <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
                             <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
                             <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>
-                            <li><a href="Hopital/web/testimonials.php" class="nav-link">Testimonials</a></li>
-                            <li><a href="/Hopital/web/blog.php" class="nav-link">Blog</a></li>
-                            <li><a href="/Hopital/web/about.php" class="nav-link">About</a></li>
+                            <li><a href="/Hopital/web/about.php" class="nav-link">Nous</a></li>
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
-                            <li><a href="/Hopital/web/account.php" class="nav-link">My account</a></li>
-                            <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link">Sign out</a></li>
+                            <li><a href="/Hopital/web/account.php" class="nav-link">Compte</a></li>
+                            <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link">Deconnexion</a></li>
                           <?php } ?>
                         </ul>
                     </nav>

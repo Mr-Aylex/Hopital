@@ -11,4 +11,5 @@ $user = new user($_POST);
 
 $manager = new manager();
 $manager->modify($user);
+header('Location: ../.php');
  ?>

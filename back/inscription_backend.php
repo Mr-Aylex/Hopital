@@ -10,5 +10,5 @@ $new_user = new user($_POST);
 
 $manager = new manager();
 $manager->insert_user($new_user);
-
+header('Location: ../index.php');
 ?>

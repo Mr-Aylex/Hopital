@@ -77,6 +77,15 @@ class manager
      header('Location: ../forms/sign_in.php');
    }
  }
+    public function recovery_data($id)
+    {
+        $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE id =:id');
+        $request->execute(array(
+            'id' => $id
+        ));
+        $result = $request->fetch();
+        return $result;
+    }
     public function afficher_medecin() {
         try
         {

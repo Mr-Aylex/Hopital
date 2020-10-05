@@ -8,7 +8,8 @@ $manager = new manager();
 $a = $manager->afficher_medecin();
 ?>
 <html>
-    <body>
+    <body style="background-image: url('/Hopital/images/medecin.jpg');">
+    <div class="container">
         <table class="table table-bordered container" style="margin-top: 100px;">
             <thead>
                 <tr>
@@ -21,11 +22,12 @@ $a = $manager->afficher_medecin();
                 ?>
             <tbody>
             <tr>
-                <td><?php echo $value->getNom() ?></td>
+                <td><?php echo 'Dr '.$value->getNom() ?></td>
                 <td><?php echo $value->getSpecialite() ?></td>
             </tr>
             </tbody>
             <?php } ?>
         </table>
+    </div>
     </body>
 </html>

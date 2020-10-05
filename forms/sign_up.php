@@ -17,7 +17,9 @@ include "../include/header.php";
 </div>
 
 
+
 <div class="site-section bg-light" id="contact-section">
+  <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-5" >
         <form action="../back/inscription_backend.php" method="post">
@@ -56,6 +58,8 @@ include "../include/header.php";
         </form>
       </div>
   </div>
+ </div>
+</div>
 
 <div class="site-section bg-primary py-5">
   <div class="container">

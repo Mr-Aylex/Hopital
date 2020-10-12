@@ -15,68 +15,20 @@ include "../include/header.php";
     </div>
   </div>
 </div>
-
-<div class="services mb-5">
-  <div class="container-fluid px-0">
-    <div class="row no-gutters align-items-stretch">
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-acupuncture-2"></span>
-          </div>
-          <h3>Acupuncture</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-therapy"></span>
-          </div>
-          <h3>Therapy</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-acupuncture-1"></span>
-          </div>
-          <h3>Foot</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-herbal"></span>
-          </div>
-          <h3>Natural</h3>
-        </a>
-      </div>
-      <div class="col-6 col-sm-6 col-md col-lg h-100">
-        <a href="#" class="service">
-          <div class="icon-wrap">
-            <span class="flaticon-acupuncture"></span>
-          </div>
-          <h3>Healing</h3>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="site-section bg-light" id="contact-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-5" >
-        <form action="#" method="post">
+        <form action="../back/newpass_backend.php" method="post">
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="email" class="form-control" name="email" placeholder="Email address" required>
+              <input type="email" class="form-control" name="mail" placeholder="Email address" required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-12">
-              <input type="password" class="form-control" name="pass" placeholder="Nouveau mot de passe" minlength="12" maxlength="80" required>
+              <input type="password" class="form-control" name="mdp" placeholder="Nouveau mot de passe" minlength="12" maxlength="80" required>
             </div>
           </div>
 

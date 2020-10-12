@@ -149,6 +149,25 @@ public function add_dossier(Dossier $dossier)
     ));
 }
 
+/**
+* @param RDV
+* Appointment booking
+*/
+public function rdv($rdv)
+{
+  $req = $this->connexion_bdd()->prepare('SELECT id, id_patient, id_medecin, date_rdv from rdv INNER JOIN dosssier_patients on dossier_patients.id_patient = rdv.id_patient INNER JOIN medecin on medecin.id = rdv.id_medecin');
+  $req->execute($this->getmethod($rdv));
+  $result = $req->fetch();
+  if($result)
+  {
+    $rdv = new rdv($result);
+    return $rdv;
+  }
+  else {
+    return null;
+  }
+}
+
  /**
  * @param User $medecin
  * Add doctors

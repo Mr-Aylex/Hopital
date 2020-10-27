@@ -62,7 +62,7 @@ function remplirMotifs(code)
 
 <div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">
   <div class="container" style="padding-top: 150px">
-      <form name="monRdv" action="../back/.php" method="post">
+      <form name="monRdv" action="../back/rdv_backend.php" method="post">
         <div class="form-group row">
             <div class="col-md-12">
               <select name="specialites" onChange="remplirMotifs(this.options[this.selectedIndex].value);">>

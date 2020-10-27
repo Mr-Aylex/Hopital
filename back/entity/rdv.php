@@ -10,6 +10,10 @@ class rdv
     /**
      * @var int
      */
+    protected $motif;
+    /**
+     * @var string
+     */
     protected $id_patient;
     /**
      * @var \mysql_xdevapi\DatabaseObject
@@ -19,12 +23,14 @@ class rdv
     /**
      * rdv constructor.
      * @param int $id
+     * @param string $motif
      * @param int $id_patient
      * @param \mysql_xdevapi\DatabaseObject $date_rdv
      */
     public function __construct($id, $id_patient, \mysql_xdevapi\DatabaseObject $date_rdv)
     {
         $this->id = $id;
+        $this->motif = $motif;
         $this->id_patient = $id_patient;
         $this->date_rdv = $date_rdv;
     }
@@ -44,6 +50,22 @@ class rdv
     {
         $this->id = $id;
     }
+
+    /**
+     * @return string
+     */
+     public function getMotif()
+     {
+        return $this->motif;
+     }
+
+    /**
+     * @param string $motif
+     */
+     public function setMotif($motif)
+     {
+       $this->motif = $motif;
+     }
 
     /**
      * @return int

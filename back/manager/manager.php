@@ -144,7 +144,7 @@ public function add_dossier(Dossier $dossier)
 */
 public function rdv($rdv)
 {
-  $req = $this->connexion_bdd()->prepare('SELECT id, id_patient, id_medecin, date_rdv, disponibilite from rdv INNER JOIN dosssier_patients on dossier_patients.id_patient = rdv.id_patient INNER JOIN medecin on medecin.id = rdv.id_medecin');
+  $req = $this->connexion_bdd()->prepare('SELECT id, motif, id_patient, id_medecin, date_rdv from rdv INNER JOIN dossier_patients on dossier_patients.id_patient = rdv.id_patient INNER JOIN medecin on medecin.id_medecin = rdv.id_medecin');
   $req->execute($this->getmethod($rdv));
   $result = $req->fetch();
   if($result)
@@ -153,7 +153,9 @@ public function rdv($rdv)
     return $rdv;
   }
   else {
-    return null;
+    $req = $this->connexion_bdd()->prepare('INSERT INTO rdv(motif, date_rdv) VALUES(:motif, NOW())');
+    $req->execute($this->getmethod($rdv));
+    header('Location: ../.php');
   }
 }
 
@@ -176,7 +178,7 @@ public function rdv($rdv)
      } else {
 
          $request = $this->connexion_bdd()->prepare(
-             'INSERT INTO utilisateur(nom, prenom, mail, mdp,role_user) VALUES (:nom, :prenom, :mail, :mdp,"mdc" )');
+             'INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
          var_dump($user);
          $request->execute($this->getmethod($user));
          $request = $this->connexion_bdd()->prepare(

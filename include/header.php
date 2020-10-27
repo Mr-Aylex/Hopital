@@ -81,7 +81,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
                                       <li><a href="/Hopital/web/mes_rdv.php" class="nav-link">Rendez-vous</a></li>
                                           <?php } ?>
                             <li><a href="/Hopital/web/account.php" class="nav-link">Compte</a></li>
-                            <li><a href="/Hopital/web/rdv.php" class="nav-link">Prise de RDV</a></li>
+                            <li><a href="/Hopital/forms/rdv.php" class="nav-link">Prise de RDV</a></li>
                             <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link">Deconnexion</a></li>
                           <?php } ?>
                         </ul>

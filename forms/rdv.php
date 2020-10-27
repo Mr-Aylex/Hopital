@@ -96,6 +96,13 @@ function remplirMotifs(code)
               </div>
           </div>
 
+          <div class="form-group row">
+              <div class="col-md-12">
+                <label for="">Sélectionnez votre date de rendez-vous</label>
+                <input type="date" name="date_rdv" placeholder="JJ/MM/AA">
+              </div>
+          </div>
+
 
           <div class="form-group row">
               <div class="col-md-6 mr-auto">

@@ -176,7 +176,7 @@ public function rdv($rdv)
      } else {
 
          $request = $this->connexion_bdd()->prepare(
-             'INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
+             'INSERT INTO utilisateur(nom, prenom, mail, mdp,role_user) VALUES (:nom, :prenom, :mail, :mdp,"mdc" )');
          var_dump($user);
          $request->execute($this->getmethod($user));
          $request = $this->connexion_bdd()->prepare(

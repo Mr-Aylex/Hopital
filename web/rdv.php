@@ -10,26 +10,19 @@ include '../include/header.php';
       <form action="" method="post">
           <div class="form-group row">
               <div class="col-md-12">
-                  <input type="text" class="form-control" name="specialite" placeholder="Spécialité" required>
-              </div>
-          </div>
-
-          <div class="form-group row">
-              <div class="col-md-12">
                   <input type="text" class="form-control" name="lieu" placeholder="Où ?" required>
               </div>
           </div>
 
           <div class="form-group row">
               <div class="col-md-12">
-                  <input type="datetime" class="form-control" name="date_rdv" placeholder="Date du rendez-vous" required>
-              </div>
-          </div>
-
-          <div class="form-group row">
-              <div class="col-md-12">
-                <label for="heure_rdv">Choose a time for your meeting:</label>
-                  <input type="time" class="form-control" name="heure_rdv" min="8:00" max="19:00" required>
+                <label for="motif-select"></label>
+                <select name="motif" id="motif-select">
+                  <option value="">Quel est votre motif ?</option>
+                  <option value=""></option>
+                  <option value=""></option>
+                  <option value=""></option>
+                </select>
               </div>
           </div>
 
@@ -45,6 +38,13 @@ include '../include/header.php';
                   <option value=""></option>
                   <option value=""></option>
                 </select>
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <div class="col-md-12">
+                <label for="heure_rdv">Choose a time for your meeting:</label>
+                  <input type="time" class="form-control" name="heure_rdv" min="8:00" max="19:00" required>
               </div>
           </div>
 

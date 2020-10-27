@@ -72,6 +72,7 @@
                             <li><a href="/Hopital/web/about.php" class="nav-link">Nous</a></li>
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
                             <li><a href="/Hopital/web/account.php" class="nav-link">Compte</a></li>
+                            <li><a href="/Hopital/web/rdv.php" class="nav-link">Prise de RDV</a></li>
                             <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link">Deconnexion</a></li>
                           <?php } ?>
                         </ul>

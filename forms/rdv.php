@@ -86,6 +86,12 @@ function remplirMotifs(code)
 
           <div class="form-group row">
               <div class="col-md-12">
+                <input type="hidden" value="<?php echo $_POST['']?>" name="id_patient">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <div class="col-md-12">
                 <input type="hidden" value="<?php echo $_POST['']?>" name="id_medecin">
               </div>
           </div>

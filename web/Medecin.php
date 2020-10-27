@@ -22,8 +22,8 @@ $a = $manager->afficher_medecin();
                 ?>
             <tbody>
             <tr>
-                <td><?php echo 'Dr '.$value->getNom() ?></td>
-                <td><?php echo $value->getSpecialite() ?></td>
+                <td><?php echo 'Dr '.$value['nom'] ?></td>
+                <td><?php echo $value['specialite'] ?></td>
             </tr>
             </tbody>
             <?php } ?>

@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
 
 <!doctype html>
 <html lang="en">
-<body>
+<body style="background-color: #0f6674">
 <div class="container">
     <h7>Informations personnelles</h7>
 </div>

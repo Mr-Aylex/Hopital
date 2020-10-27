@@ -1,7 +1,10 @@
-<?php session_start();?>
+<?php session_start();
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
+?>
 
 <head>
-    <title>Acupuncture &mdash; Free Website Template by Colorlib</title>
+    <title>Robert Schuman Hopital</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -71,6 +74,9 @@
                             <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>
                             <li><a href="/Hopital/web/about.php" class="nav-link">Nous</a></li>
                             <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
+                              <?php if(unserialize($_SESSION['user'])->getRole_user()=="admin") { ?>
+                            <li><a href="/Hopital/web/admin.php" class="nav-link">Admin</a></li>
+                                  <?php } ?>
                             <li><a href="/Hopital/web/account.php" class="nav-link">Compte</a></li>
                             <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link">Deconnexion</a></li>
                           <?php } ?>

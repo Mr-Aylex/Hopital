@@ -4,14 +4,33 @@
 class spe
 {
     /**
-     * spe constructor.
-     * @param int $id
-     * @param string $nom
+     * @var int
      */
-    public function __construct($id, $nom)
+    protected $id;
+    /**
+     * @var string
+     */
+    protected $nom_spe;
+
+    /**
+     * spe constructor.
+     * @param $array
+     */
+    public function __construct($array)
     {
-        $this->setId($id);
-        $this->setNom($nom);
+        $this->hydrate($array);
+    }
+    /**
+     * @param array $donnees
+     */
+    public function hydrate($donnees)
+    {
+        foreach($donnees as $key => $value){
+            $method = 'set'.ucfirst($key);
+            if(method_exists($this,$method)){
+                $this->$method($value);
+            }
+        }
     }
 
     /**
@@ -33,24 +52,17 @@ class spe
     /**
      * @return string
      */
-    public function getNom()
+    public function getNom_spe()
     {
-        return $this->nom;
+        return $this->nom_spe;
     }
 
     /**
-     * @param string $nom
+     * @param string $nom_spe
      */
-    public function setNom($nom)
+    public function setNom_spe($nom_spe)
     {
-        $this->nom = $nom;
+        $this->nom_spe = $nom_spe;
     }
-    /**
-     * @var int
-     */
-    protected $id;
-    /**
-     * @var string
-     */
-    protected $nom;
+
 }

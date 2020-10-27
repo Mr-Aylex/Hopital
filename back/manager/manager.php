@@ -1,6 +1,9 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/Dossier.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/rdv.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/spe.php');
 
 class manager
 {
@@ -16,7 +19,6 @@ class manager
              }
          }
      }
-     var_dump($tab);
      return $tab;
  }
 /**
@@ -71,8 +73,8 @@ class manager
      header(dirname($_SERVER['DOCUMENT_ROOT']). '/Hopital/forms/sign_up.php');
    } else {
 
-     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
-     var_dump($user);
+     $request = $this->connexion_bdd()->prepare(
+         'INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
      $request->execute($this->getmethod($user));
      header('Location: ../forms/sign_in.php');
    }
@@ -87,24 +89,11 @@ class manager
         return $result;
     }
     public function afficher_medecin() {
-        try
-        {
-            $bdd = new PDO('mysql:host=localhost;dbname=hopital;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-            die('Error :' .$e->getMessage());
-        }
-        $req = $bdd->prepare('SELECT medecin.id, utilisateur.nom, specialites.nom as specialite FROM medecin INNER JOIN specialites on specialites.id = medecin.id_specialite INNER JOIN utilisateur ON utilisateur.id = medecin.id_user');
+        $req = $this->connexion_bdd()->prepare(
+'SELECT medecin.id, utilisateur.nom, specialites.nom_spe as specialite FROM medecin INNER JOIN specialites on specialites.id = medecin.id_specialite INNER JOIN utilisateur ON utilisateur.id = medecin.id_user');
         $req->execute();
         $res = $req->fetchAll();
-        $tab = array();
-        foreach ($res as $key => $value) {
-            $nom = 'med'.$value['id'];
-            $$nom = new medecin($value);
-            $tab[$nom] = $$nom;
-        }
-        return $tab;
+        return $res;
     }
 
 /**
@@ -172,17 +161,50 @@ public function rdv($rdv)
  * @param User $medecin
  * Add doctors
  */
- public function add_medecin(User $medecin)
+ public function add_medecin(User $user,medecin $medecin)
  {
-   $request = $this->connexion_bdd()->prepare('INSERT INTO medecin (nom, prenom, id_specialite, mail, telephone, lieu) VALUES (:nom, :prenom, :id_specialite, :mail, :telephone, :lieu)');
-   $request->execute(array(
-     'nom' => $medecin->getNom(),
-     'prenom' => $medecin->getPrenom(),
-     'id_specialite' => $medecin->getIdSpecialite(),
-     'mail' => $medecin->getmail(),
-     'telephone' => $medecin->getTelephone(),
-     'lieu' => $medecin->getLieu()
-   ));
+     $request = $this->connexion_bdd()->prepare('SELECT nom, prenom FROM utilisateur WHERE nom=:nom AND prenom=:prenom');
+     $request->execute(array(
+         'nom' => $user->getNom(),
+         'prenom' => $user->getPrenom()
+     ));
+     $result = $request->fetch();
+     if (1==0)
+         //if($result)
+     {
+         header(dirname($_SERVER['DOCUMENT_ROOT']). '/Hopital/forms/sign_up.php');
+     } else {
+
+         $request = $this->connexion_bdd()->prepare(
+             'INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
+         var_dump($user);
+         $request->execute($this->getmethod($user));
+         $request = $this->connexion_bdd()->prepare(
+             'SELECT id FROM utilisateur WHERE nom=:nom AND prenom=:prenom');
+         $request->execute(array(
+             'nom' => $user->getNom(),
+             'prenom' => $user->getPrenom()
+         ));
+         $result = $request->fetch();
+         $medecin->setId_user($result['id']);
+         $request = $this->connexion_bdd()->prepare(
+             'INSERT INTO medecin(id_user, id_specialite, telephone, lieu) VALUES (:id_user, :id_specialite, :telephone, :lieu)');
+         var_dump($medecin);
+         var_dump($this->getmethod($medecin));
+         $request->execute($this->getmethod($medecin));
+         header('Location: ../web/admin.php');
+     }
+ }
+ public function get_spetialite() {
+     $request = $this->connexion_bdd()->prepare('SELECT * FROM specialites');
+     $request->execute();
+     $spe = $request->fetchAll();
+     $tab_spe = array();
+     foreach ($spe as $key => $value) {
+        $nom = $value['nom_spe'];
+        $tab_spe[$nom] = new spe($value);
+     }
+     return $tab_spe;
  }
 
  /**

@@ -19,13 +19,13 @@ include "../include/header.php";
 
           <div class="form-group row">
               <div class="col-md-12">
-                  <input type="email" class="form-control" name="mail" placeholder="Email address" required>
+                  <input type="email" class="form-control" name="mail" placeholder="Mail" required>
               </div>
           </div>
 
           <div class="form-group row">
               <div class="col-md-12">
-                  <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" minlength="12" maxlength="80" required>
+                  <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" required>
               </div>
           </div>
 

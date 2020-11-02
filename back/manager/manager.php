@@ -129,7 +129,13 @@ class manager
          return null;
      }
  }
+public function if_mail_exist($mail) {
+    $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE mail=:mail');
+    $request->execute(array('mail'=>$mail));
 
+    return $request->fetch();
+
+}
  /**
 * @param User $user
 * Forgotten mdpword
@@ -138,10 +144,9 @@ public function new_mdp(User $user)
 {
   $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET mdp=:mdp WHERE mail=:mail');
   $request->execute(array(
-    'mdp' => md5($user->getMdp()),
+    'mdp' => $user->getMdp(),
     'mail' => $user->getMail()
   ));
-  header('Location: ../index.php');
 }
 
 /**
@@ -214,12 +219,14 @@ public function rdv($rdv)
          $medecin->setId_user($result['id']);
          $request = $this->connexion_bdd()->prepare(
              'INSERT INTO medecin(id_user, id_specialite, telephone, lieu) VALUES (:id_user, :id_specialite, :telephone, :lieu)');
-         var_dump($medecin);
-         var_dump($this->getmethod($medecin));
          $request->execute($this->getmethod($medecin));
          header('Location: ../web/admin.php');
      }
  }
+
+    /**
+     * @return array
+     */
  public function get_spetialite() {
      $request = $this->connexion_bdd()->prepare('SELECT * FROM specialites');
      $request->execute();

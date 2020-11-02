@@ -41,7 +41,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
 
 
 
-    <header class="site-navbar site-navbar-target" role="banner">
+    <header class="site-navbar site-navbar-target bg-dark" role="banner">
 
         <div class="container">
             <div class="row align-items-center position-relative">

@@ -8,5 +8,5 @@ $user->setMail($_POST['mail']);
 $user->setMdp($_POST['mdp']);
 $manager->new_mdp($user);
 
-header('Location: ../forms/sign_up.php');
+header('Location: ../forms/sign_in.php');
 ?>

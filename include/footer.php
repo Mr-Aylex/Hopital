@@ -10,7 +10,7 @@
                     <div class="mb-3 icon-wrap">
                         <span class="icon-phone"></span>
                     </div>
-                    <span class="caption">1-800-1234-902</span>
+                    <span class="caption">01 48 37 74 26</span>
                 </div>
 
             </div>
@@ -20,8 +20,7 @@
                     <div class="mb-3 icon-wrap">
                         <span class="icon-room"></span>
                     </div>
-                    <span class="caption">2130 Fulton Street San Diego,
-CA 94117-1080 USA</span>
+                    <span class="caption">5 Avenue du Général de Gaulle, 93440 Dugny</span>
                 </div>
 
             </div>
@@ -31,32 +30,13 @@ CA 94117-1080 USA</span>
                     <div class="mb-3 icon-wrap">
                         <span class="icon-envelope-o"></span>
                     </div>
-                    <span class="caption">info@mydomain.com</span>
+                    <span class="caption">hopitalrobertschuman@gmail.com</span>
                 </div>
 
             </div>
         </div>
 
 
-        <div class="row pt-5 mt-5 text-center">
-            <div class="col-lg-7 text-lg-left">
-                <p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-            </div>
-            <div class="col-lg-5 text-lg-right">
-                <a href="#" class="ml-3">Terms</a>
-                <a href="#" class="ml-3">Privacy</a>
-            </div>
-            <!-- <div class="col-md-12">
-              <div class="border-top pt-5">
-
-              </div>
-            </div> -->
-
-        </div>
     </div>
 </footer>
 

@@ -9,7 +9,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
 $signin = new user($_POST);
 $manager = new manager();
 $res = $manager->connexion($signin);
-var_dump($res);
 if ($res) {
  session_start();
  $_SESSION['user'] = serialize($res);

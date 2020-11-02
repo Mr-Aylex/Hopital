@@ -60,29 +60,25 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
                         <ul class="site-menu main-menu js-clone-nav ml-auto ">
                           <?php
                           if(empty($_SESSION['user'])) {?>
-                            <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
-                            <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
-                            <li><a href="/Hopital/web/Medecin.php" class="nav-link">Docteurs</a></li>
-                            <li><a href="/Hopital/web/about.php" class="nav-link">Nous</a></li>
-                            <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
-                            <li><a href="/Hopital/forms/sign_in.php" class="nav-link">Connexion</a></li>
-                            <li><a href="/Hopital/forms/sign_up.php" class="nav-link">Inscription</a></li>
+                            <li class="text-secondary font-weight-bold"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
+                            <li><a href="/Hopital/web/Medecin.php" class="nav-link font-weight-bold">Docteurs</a></li>
+                            <li><a href="/Hopital/web/about.php" class="nav-link font-weight-bold">Nous</a></li>
+                            <li><a href="/Hopital/forms/sign_in.php" class="nav-link font-weight-bold">Connexion</a></li>
+                            <li><a href="/Hopital/forms/sign_up.php" class="nav-link font-weight-bold">Inscription</a></li>
                           <?php }
                           if(isset($_SESSION['user'])) {?>
-                            <li class="active"><a href="/Hopital/index.php" class="nav-link">Home</a></li>
-                            <li><a href="/Hopital/web/services.php" class="nav-link">Services</a></li>
-                            <li><a href="/Hopital/web/Medecin.php" class="nav-link">Doctors</a></li>
-                            <li><a href="/Hopital/web/about.php" class="nav-link">Nous</a></li>
-                            <li><a href="/Hopital/web/contact.php" class="nav-link">Contact</a></li>
+                            <li class="active"><a href="/Hopital/index.php" class="nav-link font-weight-bold">Home</a></li>
+                            <li><a href="/Hopital/web/Medecin.php" class="nav-link font-weight-bold">Doctors</a></li>
+                            <li><a href="/Hopital/web/about.php" class="nav-link font-weight-bold">Nous</a></li>
                               <?php if(unserialize($_SESSION['user'])->getRole_user()=="admin") { ?>
-                            <li><a href="/Hopital/web/admin.php" class="nav-link">Admin</a></li>
+                            <li><a href="/Hopital/web/admin.php" class="nav-link font-weight-bold">Admin</a></li>
                                   <?php }
                                   elseif (unserialize($_SESSION['user'])->getRole_user()=="mdc") { ?>
-                                      <li><a href="/Hopital/web/mes_rdv.php" class="nav-link">Rendez-vous</a></li>
+                                      <li><a href="/Hopital/web/mes_rdv.php" class="nav-link font-weight-bold">Rendez-vous</a></li>
                                           <?php } ?>
-                            <li><a href="/Hopital/web/account.php" class="nav-link">Compte</a></li>
-                            <li><a href="/Hopital/forms/rdv.php" class="nav-link">Prise de RDV</a></li>
-                            <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link">Deconnexion</a></li>
+                            <li><a href="/Hopital/web/account.php" class="nav-link font-weight-bold">Compte</a></li>
+                            <li><a href="/Hopital/forms/rdv.php" class="nav-link font-weight-bold">Prise de RDV</a></li>
+                            <li><a href="/Hopital/back/deconnexion_backend.php" class="nav-link font-weight-bold">Deconnexion</a></li>
                           <?php } ?>
                         </ul>
                     </nav>

@@ -30,4 +30,5 @@ $a = $manager->afficher_medecin();
         </table>
     </div>
     </body>
+
 </html>

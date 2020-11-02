@@ -29,7 +29,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
         <td> <?php echo $a->getPrenom(); ?> </td>
         <td> <?php echo $a->getMail(); ?> </td>
       <td>
-          <form action="" method="post">
+          <form action="../forms/update.php" method="post">
               <input type="hidden" value="<?php echo $a->getId() ?>" name="id">
               <input type="submit" value="Modifié">
           </form>

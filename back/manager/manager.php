@@ -102,9 +102,32 @@ class manager
 */
  public function modify(User $user)
  {
-   $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, mail=:mail, mdp=:mdp, role_user=:role_user WHERE id=:id');
-   $request->execute($this->getmethod());
-   header('Location: ../index.php');
+     var_dump($user);
+   $request = $this->connexion_bdd()->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, mail=:mail, mdp=:mdp WHERE id=:id');
+   $request->execute(array(
+       'id'=>$user->getId(),
+       'mdp'=>$user->getMdp(),
+       'mail'=>$user->getMail(),
+       'nom'=>$user->getNom(),
+       'prenom'=>$user->getPrenom()
+   ));
+   //header('Location: ../index.php');
+ }
+ public function get_modification($user) {
+     $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE mail=:mail and mdp=:mdp');
+     $request->execute(array(
+         'mdp'=>$user->getMdp(),
+         'mail'=>$user->getMail()
+
+         ));
+     $result = $request->fetch();
+     if ($result) {
+         $user = new user($result);
+         return $user;
+     }
+     else {
+         return null;
+     }
  }
 
  /**

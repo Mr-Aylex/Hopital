@@ -34,7 +34,7 @@ try {
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Oublie de mot de passe';
-    $mail->Body    = '<b>Cliqué <a href="">ici</a> pour réinistailiser votre mot de passe in bold!</b>';
+    $mail->Body    = '<p>Cliqué <a href="">ici</a> pour réinistailiser votre mot de passe</p>';
     $mail->AltBody = 'Hopital Robert Schuman';
 
     $mail->send();

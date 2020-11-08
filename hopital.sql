@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 14 sep. 2020 à 13:41
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le : Dim 08 nov. 2020 à 20:58
+-- Version du serveur :  8.0.21
+-- Version de PHP : 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,8 +18,21 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `hopital`
+-- Base de données : `hopital`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `date`
+--
+
+DROP TABLE IF EXISTS `date`;
+CREATE TABLE IF NOT EXISTS `date` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -30,17 +42,76 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `dossier_patients`;
 CREATE TABLE IF NOT EXISTS `dossier_patients` (
-  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_patient` int(10) UNSIGNED NOT NULL,
-  `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `adresse_post` varchar(255) COLLATE utf8_bin NOT NULL,
-  `mutuelle` varchar(255) COLLATE utf8_bin NOT NULL,
-  `num_ss` varchar(255) COLLATE utf8_bin NOT NULL,
-  `opt` varchar(255) COLLATE utf8_bin NOT NULL,
-  `regime` varchar(255) COLLATE utf8_bin NOT NULL,
+  `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_patient` int UNSIGNED NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `adresse_post` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `mutuelle` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `num_ss` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `opt` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `regime` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_to_idpatient` (`id_patient`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `heure`
+--
+
+DROP TABLE IF EXISTS `heure`;
+CREATE TABLE IF NOT EXISTS `heure` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom_heure` time NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `heure`
+--
+
+INSERT INTO `heure` (`id`, `nom_heure`) VALUES
+(2, '09:00:00'),
+(3, '09:15:00'),
+(4, '09:30:00'),
+(5, '09:45:00'),
+(6, '10:00:00'),
+(7, '10:15:00'),
+(8, '10:30:00'),
+(9, '10:45:00'),
+(10, '11:00:00'),
+(11, '11:15:00'),
+(12, '12:00:00'),
+(13, '12:15:00'),
+(14, '12:30:00'),
+(15, '12:45:00'),
+(16, '13:00:00'),
+(17, '13:15:00'),
+(18, '13:30:00'),
+(19, '13:45:00'),
+(20, '14:00:00'),
+(21, '14:15:00'),
+(22, '14:30:00'),
+(23, '14:45:00'),
+(24, '15:00:00'),
+(25, '15:15:00'),
+(26, '15:30:00'),
+(27, '15:45:00'),
+(28, '16:00:00'),
+(29, '16:15:00'),
+(30, '16:30:00'),
+(31, '16:45:00'),
+(32, '17:00:00'),
+(33, '17:15:00'),
+(34, '17:30:00'),
+(35, '17:45:00'),
+(36, '17:45:00'),
+(37, '18:00:00'),
+(38, '18:15:00'),
+(39, '18:30:00'),
+(40, '18:45:00'),
+(41, '19:00:00');
 
 -- --------------------------------------------------------
 
@@ -50,16 +121,48 @@ CREATE TABLE IF NOT EXISTS `dossier_patients` (
 
 DROP TABLE IF EXISTS `medecin`;
 CREATE TABLE IF NOT EXISTS `medecin` (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8_bin NOT NULL,
-  `prenom` varchar(255) COLLATE utf8_bin NOT NULL,
-  `id_specialite` int(11) UNSIGNED NOT NULL,
-  `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `telephone` varchar(255) COLLATE utf8_bin NOT NULL,
-  `lieu` varchar(255) COLLATE utf8_bin NOT NULL,
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_user` int UNSIGNED NOT NULL,
+  `id_specialite` int UNSIGNED NOT NULL,
+  `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `lieu` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_spe_to_medecin` (`id_specialite`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `fk_spe_to_medecin` (`id_specialite`),
+  KEY `fk_id_user_to_medecin` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `medecin`
+--
+
+INSERT INTO `medecin` (`id`, `id_user`, `id_specialite`, `telephone`, `lieu`) VALUES
+(1, 19, 1, '0787758610', ''),
+(3, 21, 1, '0787758610', '');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `motif`
+--
+
+DROP TABLE IF EXISTS `motif`;
+CREATE TABLE IF NOT EXISTS `motif` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom_motif` varchar(255) COLLATE utf8_bin NOT NULL,
+  `id_spe` int UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_id_spe_to_motif` (`id_spe`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `motif`
+--
+
+INSERT INTO `motif` (`id`, `nom_motif`, `id_spe`) VALUES
+(2, 'toux', 1),
+(3, 'fièvre', 1),
+(4, 'cancer', 2),
+(5, 'alzaimer', 2);
 
 -- --------------------------------------------------------
 
@@ -69,9 +172,9 @@ CREATE TABLE IF NOT EXISTS `medecin` (
 
 DROP TABLE IF EXISTS `rdv`;
 CREATE TABLE IF NOT EXISTS `rdv` (
-  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_patient` int(11) UNSIGNED NOT NULL,
-  `id_medecin` int(11) UNSIGNED NOT NULL,
+  `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_patient` int UNSIGNED NOT NULL,
+  `id_medecin` int UNSIGNED NOT NULL,
   `date_rdv` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_to_idpatien` (`id_patient`),
@@ -86,10 +189,18 @@ CREATE TABLE IF NOT EXISTS `rdv` (
 
 DROP TABLE IF EXISTS `specialites`;
 CREATE TABLE IF NOT EXISTS `specialites` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8_bin NOT NULL,
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom_spe` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `specialites`
+--
+
+INSERT INTO `specialites` (`id`, `nom_spe`) VALUES
+(1, 'généraliste'),
+(2, 'neurologie');
 
 -- --------------------------------------------------------
 
@@ -99,14 +210,23 @@ CREATE TABLE IF NOT EXISTS `specialites` (
 
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8_bin NOT NULL,
-  `prenom` varchar(255) COLLATE utf8_bin NOT NULL,
-  `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `mdp` varchar(255) COLLATE utf8_bin NOT NULL,
-  `role` varchar(255) COLLATE utf8_bin NOT NULL,
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `prenom` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `mdp` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `role_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `role_user`) VALUES
+(1, 'CARMONE', 'Alexandre ', 'carmonealexandre@hotmail.fr', '1234', 'admin'),
+(19, 'Falgon', 'Catherine', 'test@gfz.frdsf', '1234', 'medecin'),
+(21, 'testnom', 'testprenom', 'qzedqzd@sefes.fr', '1234', 'medecin');
 
 --
 -- Contraintes pour les tables déchargées
@@ -116,7 +236,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Contraintes pour la table `medecin`
 --
 ALTER TABLE `medecin`
+  ADD CONSTRAINT `fk_id_user_to_medecin` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fk_spe_to_medecin` FOREIGN KEY (`id_specialite`) REFERENCES `specialites` (`id`);
+
+--
+-- Contraintes pour la table `motif`
+--
+ALTER TABLE `motif`
+  ADD CONSTRAINT `fk_id_spe_to_motif` FOREIGN KEY (`id_spe`) REFERENCES `specialites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `rdv`

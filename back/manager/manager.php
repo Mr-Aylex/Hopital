@@ -66,17 +66,17 @@ class manager
      'nom' => $user->getNom(),
      'prenom' => $user->getPrenom()
    ));
-   $result = $request->fetch();
-   if (1==0)
-   //if($result)
-   {
-     header(dirname($_SERVER['DOCUMENT_ROOT']). '/Hopital/forms/sign_up.php');
-   } else {
+     $result = $request->fetch();
+     var_dump($result);
+   if ($result==false) {
+       $request = $this->connexion_bdd()->prepare(
+           "INSERT INTO utilisateur(nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)");
+       $request->execute($this->getmethod($user));
+        return 1;
+   }
+   else {
 
-     $request = $this->connexion_bdd()->prepare(
-         'INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
-     $request->execute($this->getmethod($user));
-     header('Location: ../forms/sign_in.php');
+         return 0;
    }
  }
     public function recovery_data($id)
@@ -90,10 +90,21 @@ class manager
     }
     public function afficher_medecin() {
         $req = $this->connexion_bdd()->prepare(
-'SELECT medecin.id, utilisateur.nom, specialites.nom_spe as specialite FROM medecin INNER JOIN specialites on specialites.id = medecin.id_specialite INNER JOIN utilisateur ON utilisateur.id = medecin.id_user');
+'SELECT medecin.id, utilisateur.nom,id_specialite as id_spe, specialites.nom_spe as specialite FROM medecin INNER JOIN specialites on specialites.id = medecin.id_specialite INNER JOIN utilisateur ON utilisateur.id = medecin.id_user');
         $req->execute();
         $res = $req->fetchAll();
-        return $res;
+        $i = 0;
+        foreach ($res as $key1 => $value1) {
+            $array = array();
+            foreach ($value1 as $key => $value) {
+                if (!is_int($key)) {
+                    $array[$key] = $value;
+                }
+            }
+            $medecins[$i] = $array;
+            $i++;
+        }
+        return $medecins;
     }
 
 /**
@@ -206,7 +217,7 @@ public function rdv($rdv)
      } else {
 
          $request = $this->connexion_bdd()->prepare(
-             'INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)');
+             'INSERT INTO utilisateur(nom, prenom, mail, mdp,role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
          var_dump($user);
          $request->execute($this->getmethod($user));
          $request = $this->connexion_bdd()->prepare(
@@ -217,10 +228,10 @@ public function rdv($rdv)
          ));
          $result = $request->fetch();
          $medecin->setId_user($result['id']);
+         var_dump($medecin);
          $request = $this->connexion_bdd()->prepare(
              'INSERT INTO medecin(id_user, id_specialite, telephone, lieu) VALUES (:id_user, :id_specialite, :telephone, :lieu)');
          $request->execute($this->getmethod($medecin));
-         header('Location: ../web/admin.php');
      }
  }
 
@@ -231,14 +242,28 @@ public function rdv($rdv)
      $request = $this->connexion_bdd()->prepare('SELECT * FROM specialites');
      $request->execute();
      $spe = $request->fetchAll();
-     $tab_spe = array();
-     foreach ($spe as $key => $value) {
-        $nom = $value['nom_spe'];
-        $tab_spe[$nom] = new spe($value);
-     }
-     return $tab_spe;
+     return $spe;
  }
+public function get_motif(){
+    $request = $this->connexion_bdd()->prepare('SELECT * FROM motif');
+    $request->execute();
+    $motif = $request->fetchAll();
+    $motif2 = array();
+    $i = 0;
+    foreach ($motif as $key1 => $value1) {
+        $array = array();
+        foreach ($value1 as $key => $value) {
+            if (!is_int($key)) {
+                $array[$key] = $value;
+            }
+        }
+        $motif2[$i] = $array;
+        $i++;
 
+
+    }
+    return $motif2;
+}
  /**
  * @param User $administrateur
  * Add manager

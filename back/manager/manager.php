@@ -183,19 +183,9 @@ public function add_dossier(Dossier $dossier)
 */
 public function rdv($rdv)
 {
-  $req = $this->connexion_bdd()->prepare('SELECT id, motif, id_patient, id_medecin, date_rdv from rdv INNER JOIN dossier_patients on dossier_patients.id_patient = rdv.id_patient INNER JOIN medecin on medecin.id_medecin = rdv.id_medecin');
+  $req = $this->connexion_bdd()->prepare('INSERT INTO rdv(id_patient, id_medecin, id_motif, date_rdv, heure_id) VALUE (:id_patient, :id_medecin, :id_motif, :date_rdv, :heure_id)');
   $req->execute($this->getmethod($rdv));
-  $result = $req->fetch();
-  if($result)
-  {
-    $rdv = new rdv($result);
-    return $rdv;
-  }
-  else {
-    $req = $this->connexion_bdd()->prepare('INSERT INTO rdv(motif, date_rdv) VALUES(:motif, NOW())');
-    $req->execute($this->getmethod($rdv));
-    header('Location: ../.php');
-  }
+
 }
 
  /**
@@ -280,5 +270,15 @@ public function get_motif(){
    ));
    header('Location: ../admin.php');
  }
-
+ public function get_horaire() {
+     $request = $this->connexion_bdd()->prepare('SELECT * FROM heure');
+     $request->execute();
+     $a = $request->fetchAll();
+     return $a;
+ }
+public function get_used_horaire() {
+ $request = $this->connexion_bdd()->prepare('SELECT heure_id, date_rdv, id_medecin FROM rdv');
+ $request->execute();
+ return $request->fetchAll();
+ }
 }

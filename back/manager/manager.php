@@ -183,7 +183,7 @@ public function add_dossier(Dossier $dossier)
 */
 public function export_dossier(Dossier $exporting)
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients');
+  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients ORDER BY id');
   $request->execute($this->getmethod($exporting));
   $result = $request->fetchAll();
   $excel = "Id \t Id_Patient \t Mail \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";

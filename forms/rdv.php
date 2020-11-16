@@ -144,7 +144,7 @@ include '../include/header.php';
                 option.setAttribute('value',medecin['id']);
                 option.setAttribute('classe','motif');
                 form.id_medecin.appendChild(option);
-                // form.motif.options[i+1].text=motif['nom_motif'];
+                //form.motif.options[i+1].text=motif['nom_motif'];
             }
         }
     }

@@ -200,7 +200,17 @@ CREATE TABLE IF NOT EXISTS `specialites` (
 
 INSERT INTO `specialites` (`id`, `nom_spe`) VALUES
 (1, 'généraliste'),
-(2, 'neurologie');
+(2, 'neurologie'),
+(3, 'addictologie'),
+(4, 'cancérologie'),
+(5, 'chirurgie hépato-biliaire'),
+(6, 'gastro-entérologie et hépatologie'),
+(7, 'gériatrie'),
+(8, 'hématologie'),
+(9, 'hépatologie'),
+(10, 'infirmerie'),
+(11, 'psychiatrie'),
+(12, 'tabacologie');
 
 -- --------------------------------------------------------
 

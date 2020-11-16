@@ -10,29 +10,43 @@ class rdv
     /**
      * @var int
      */
-    protected $motif;
+    protected $id_motif;
     /**
-     * @var string
+     * @var int
+     */
+    protected $id_medecin;
+    /**
+     * @var int
      */
     protected $id_patient;
     /**
-     * @var \mysql_xdevapi\DatabaseObject
+     * @var Date
      */
     protected $date_rdv;
+    /**
+     * @var int
+     */
+    protected $heure_id;
 
     /**
      * rdv constructor.
-     * @param int $id
-     * @param string $motif
-     * @param int $id_patient
-     * @param \mysql_xdevapi\DatabaseObject $date_rdv
+     * @param $array
      */
-    public function __construct($id, $id_patient, \mysql_xdevapi\DatabaseObject $date_rdv)
+    public function __construct($array)
     {
-        $this->id = $id;
-        $this->motif = $motif;
-        $this->id_patient = $id_patient;
-        $this->date_rdv = $date_rdv;
+        $this->hydrate($array);
+    }
+    /**
+     * @param array $donnees
+     */
+    public function hydrate($donnees)
+    {
+        foreach($donnees as $key => $value){
+            $method = 'set'.ucfirst($key);
+            if(method_exists($this,$method)){
+                $this->$method($value);
+            }
+        }
     }
 
     /**
@@ -52,25 +66,41 @@ class rdv
     }
 
     /**
-     * @return string
+     * @return int
      */
-     public function getMotif()
-     {
-        return $this->motif;
-     }
+    public function getId_motif()
+    {
+        return $this->id_motif;
+    }
 
     /**
-     * @param string $motif
+     * @param int $id_motif
      */
-     public function setMotif($motif)
-     {
-       $this->motif = $motif;
-     }
+    public function setId_motif($id_motif)
+    {
+        $this->id_motif = $id_motif;
+    }
 
     /**
      * @return int
      */
-    public function getIdPatient()
+    public function getId_medecin()
+    {
+        return $this->id_medecin;
+    }
+
+    /**
+     * @param int $id_medecin
+     */
+    public function setId_medecin($id_medecin)
+    {
+        $this->id_medecin = $id_medecin;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId_patient()
     {
         return $this->id_patient;
     }
@@ -78,25 +108,41 @@ class rdv
     /**
      * @param int $id_patient
      */
-    public function setIdPatient($id_patient)
+    public function setId_patient($id_patient)
     {
         $this->id_patient = $id_patient;
     }
 
     /**
-     * @return \mysql_xdevapi\DatabaseObject
+     * @return Date
      */
-    public function getDateRdv()
+    public function getDate_rdv()
     {
         return $this->date_rdv;
     }
 
     /**
-     * @param \mysql_xdevapi\DatabaseObject $date_rdv
+     * @param Date $date_rdv
      */
-    public function setDateRdv($date_rdv)
+    public function setDate_rdv($date_rdv)
     {
         $this->date_rdv = $date_rdv;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHeure_id()
+    {
+        return $this->heure_id;
+    }
+
+    /**
+     * @param int $heure_id
+     */
+    public function setHeure_id($heure_id)
+    {
+        $this->heure_id = $heure_id;
     }
 
 }

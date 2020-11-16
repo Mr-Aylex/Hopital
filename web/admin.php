@@ -9,6 +9,11 @@ include "../include/header.php";
 <div>
     <a href="../forms/nouveau_admin.php">Ajouter un Admin</a>
 </div>
+<div>
+    <form action="../back/export_backend.php" method="post">
+      <input type="submit" class="btn btn-info" value="Exporter en XLS">
+    </form>
+</div>
 
 </body>
 </html>

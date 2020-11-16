@@ -178,6 +178,26 @@ public function add_dossier(Dossier $dossier)
 }
 
 /**
+* @param Dossier
+* Export folder
+*/
+public function export_dossier(Dossier $exporting)
+{
+  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients');
+  $request->execute($this->getmethod($exporting));
+  $result = $request->fetchAll();
+  $excel = "Id \t Id_Patient \t Mail \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";
+  foreach($result as $row)
+  {
+    $excel .= "$row[id] \t$row[email] \t$row[adresse_post] \t$row[mutuelle] \t$row[num_ss] \t$row[opt] \t$row[regime] \n";
+  }
+  header("Content-type: application/vnd.ms-excel");
+  header("Content-disposition: attachment; filename=dossier-patients.xls");
+  print $excel;
+  exit;
+}
+
+/**
 * @param RDV
 * Appointment booking
 */
@@ -270,14 +290,13 @@ public function get_motif(){
  */
  public function add_administrateur(User $administrateur)
  {
-   $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur (nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
-   $request->execute(array(
-     'nom' => $administrateur->getNom(),
-     'prenom' => $administrateur->getPrenom(),
-     'mail' => $administrateur->getmail(),
-     'mdp' => $administrateur->getmdp(),
-     'role_user' => $administrateur->getrole_userUser()
-   ));
+   if(1==0)
+   {
+     header(dirname($_SERVER['DOCUMENT_ROOT']) .'Hopital/forms/nouveau_admin.php');
+   } else {
+     $request = $this->connexion_bdd()->prepare('INSERT INTO utilisateur (nom, prenom, mail, mdp, role_user) VALUES (:nom, :prenom, :mail, :mdp, :role_user)');
+     $request->execute($this->getmethod($administrateur));
+   }
    header('Location: ../admin.php');
  }
 

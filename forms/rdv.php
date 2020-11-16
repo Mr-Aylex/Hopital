@@ -11,8 +11,7 @@ include '../include/header.php';
     $spes = $manager->get_spetialite();
     $motifs = $manager->get_motif();
     $medecins = $manager->afficher_medecin();
-    $used_horaire = $manager->get_used_horaire();
-    $horaire = $manager->get_horaire();
+
     ?>
 <!--<div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">-->
   <div class="container" style="padding-top: 150px">
@@ -30,7 +29,7 @@ include '../include/header.php';
           <select name="id_motif" >
               <option value="">--Motif du rendez-vous motif--</option>
           </select>
-          <select name="id_medecin" onchange="change_medecin(this.form)">
+          <select name="id_medecin" onchange="medecin(this.form)">
               <option value="0">--Medecin--</option>
           </select>
 
@@ -45,11 +44,11 @@ include '../include/header.php';
                   <div class="form-group">
                       <label for="" class="form-check-label">Date</label>
 
-                      <input id="date" type="date" value="" name="date_rdv" min="<?= date('Y-m-d');  ?>" onChange='Heure(this.form)' disabled>
+                      <input id="date" type="date" value="" name="date_rdv" min="<?= date('Y-m-d');  ?>" onchange="afficher_heure(this.form)" disabled>
                   </div>
                   <label for="">Heure</label>
-                  <select name="heure_id" id="">
-                      <option value=""></option>
+                  <select name="heure_id" id="heure">
+                      <option value="0">--Heure--</option>
                   </select>
               </div>
           </div>
@@ -67,6 +66,9 @@ include '../include/header.php';
 
 </html>
 <script>
+    function medecin(form) {
+        change_medecin(form);
+    }
     function change_medecin(form) {
         if (form.id_medecin.value=='0') {
             form.date_rdv.setAttribute('disabled','');
@@ -75,67 +77,33 @@ include '../include/header.php';
             form.date_rdv.removeAttribute('disabled');
         }
     }
-    function Heure(form) {
-        heures = <?php echo json_encode($horaire) ?>;
-        used_heures = <?php echo json_encode($used_horaire) ?>;
+    function afficher_heure(form) {
         while (form.heure_id.firstChild) {
             form.heure_id.removeChild(form.heure_id.firstChild);
         }
-        var i = 0;
-        if (used_heures.length===0) {
-            for (var key in heures) {
-                heure = heures[key];
-                option = document.createElement('option');
-                option.text = heure['nom_heure'];
-                option.setAttribute('value',heure['id']);
-                option.setAttribute('classe','motif');
-                form.heure_id.appendChild(option);
-            }
-        }
-        else {
-            // pour chaque heure
-                // Comparer au heure utilisé
-                // Si utliilisé, retirer l'heure
-                // Sinon, la garder
-            //afficher l'heure
-            for (var key in used_heures) {
-                var used_heure = used_heures[key];
-                for (var key2 in heures) {
-                    var heure = heures[key2];
-                    console.log(used_heure['heure_id']);
-                    console.log(heure['id']);
-                    var est_trouve = false;
-                    if (used_heure['date_rdv'] == form.date.value) {
-                        if (used_heure['heure_id']!=heure['id']) {
-                            option = document.createElement('option');
-                            option.text = heure['nom_heure'];
-                            option.setAttribute('value', heure['id']);
-                            option.setAttribute('classe', 'motif');
-                            form.heure_id.appendChild(option);
-                        }
-                        else {
-                            console.log(used_heure['heure_id']);
-                            console.log(heure['id']);
-                            est_trouve = true;
-
-                        }
-
-                    }
-                    else {
-                        option = document.createElement('option');
-                        option.text = heure['nom_heure'];
-                        option.setAttribute('value', heure['id']);
-                        option.setAttribute('classe', 'motif');
-                        form.heure_id.appendChild(option);
-                    }
-                    console.log(est_trouve);
-
-                    if(est_trouve){
-                        break;
-                    }
+        option = document.createElement('option');
+        option.text = '--Heure--';
+        option.setAttribute('value','0');
+        form.heure_id.appendChild(option);
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                heures = this.responseText.split(';');
+                for (var key in heures) {
+                    heure = heures[key];
+                    heure1 = heure.split(',');
+                    console.log(heure1);
+                    option = document.createElement('option');
+                    option.text = heure1['1'];
+                    option.setAttribute('value',heure1['0']);
+                    form.heure_id.appendChild(option);
                 }
+                form.heure_id.lastChild.remove();
             }
-        }
+        };
+        xhttp.open("GET", "../back/afficher_heure_disponible.php?id_medecin="+form.id_medecin.value+"&date="+form.date_rdv.value, true);
+        xhttp.send();
     }
     function Choix(form) {
 

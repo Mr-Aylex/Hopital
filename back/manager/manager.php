@@ -276,9 +276,27 @@ public function get_motif(){
      $a = $request->fetchAll();
      return $a;
  }
-public function get_used_horaire() {
- $request = $this->connexion_bdd()->prepare('SELECT heure_id, date_rdv, id_medecin FROM rdv');
- $request->execute();
- return $request->fetchAll();
+public function get_unused_horaire($medecin,$date) {
+ $request = $this->connexion_bdd()->prepare('SELECT * FROM heure WHERE id not in (SELECT heure_id FROM rdv WHERE id_medecin=:id_medecin AND date_rdv = :date_rdv)');
+ $request->execute(array(
+     'id_medecin'=>$medecin,
+     'date_rdv'=>$date
+     ));
+    $heure = $request->fetchAll();
+    $heure2 = array();
+    $i = 0;
+    foreach ($heure as $key1 => $value1) {
+        $array = array();
+        foreach ($value1 as $key => $value) {
+            if (!is_int($key)) {
+                $array[$key] = $value;
+            }
+        }
+        $heure2[$i] = $array;
+        $i++;
+
+
+    }
+    return $heure2;
  }
 }

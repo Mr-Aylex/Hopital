@@ -22,6 +22,10 @@ class dossier
    /**
    * @var string
    */
+   protected $mutuelle;
+   /**
+   * @var string
+   */
    protected $num_ss;
    /**
    * @var string

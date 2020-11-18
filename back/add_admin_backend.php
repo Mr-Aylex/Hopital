@@ -13,7 +13,7 @@ if($result==1)
 {
   echo $result;
   header('Location: ../nouveau_admin.php');
-} elseif($result == 0) {
+} else {
   echo $result;
   header('Location: ../forms/nouveau_admin.php');
 }

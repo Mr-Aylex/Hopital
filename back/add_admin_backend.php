@@ -12,9 +12,9 @@ $result = $manager->add_administrateur($new_admin);
 if($result==1)
 {
   echo $result;
-  header('Location: ../nouveau_admin.php');
+  header('Location: ../forms/nouveau_admin.php');
 } else {
   echo $result;
-  header('Location: ../forms/nouveau_admin.php');
+  header('Location: ../index.php');
 }
  ?>

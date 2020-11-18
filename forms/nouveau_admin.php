@@ -3,7 +3,7 @@ include "../include/header.php";
 ?>
 <html>
 <body style="padding-top: 150px">
-<form action="../back/inscription_backend.php" method="post">
+<form action="../back/add_admin_backend.php" method="post">
     <div class="form-group row">
         <div class="col-md-6 mb-4 mb-lg-0">
             <input type="text" class="form-control" name="nom" placeholder="Nom" minlength="2" maxlength="30" required>

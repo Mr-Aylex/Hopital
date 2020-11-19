@@ -45,13 +45,45 @@ class medecin
       /**
       * @return int
       */
+      public function getId()
+      {
+        return $this->id;
+      }
+
+      /**
+      * @param int $id
+      */
+      public function setId()
+      {
+        $this->id = $id;
+      }
+
+      /**
+       * @return int
+       */
+      public function getId_user()
+      {
+          return $this->id_user;
+      }
+
+      /**
+       * @param int $id_user
+       */
+      public function setId_user($id_user)
+      {
+          $this->id_user = $id_user;
+      }
+
+      /**
+      * @return int
+      */
       public function getId_specialite()
       {
         return $this->id_specialite;
       }
 
       /**
-      * @param string specialite
+      * @param string $specialite
       */
       public function setId_specialite($id_specialite)
       {
@@ -89,22 +121,5 @@ class medecin
       {
         $this->lieu = $lieu;
       }
-
-    /**
-     * @return int
-     */
-    public function getId_user()
-    {
-        return $this->id_user;
-    }
-
-    /**
-     * @param int $id_user
-     */
-    public function setId_user($id_user)
-    {
-        $this->id_user = $id_user;
-    }
-
 
 }

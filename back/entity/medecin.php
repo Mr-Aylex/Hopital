@@ -4,6 +4,10 @@
 class medecin
 {
     /**
+    * @var int
+    */
+    protected $id;
+    /**
      * @var int
      */
     protected $id_user;

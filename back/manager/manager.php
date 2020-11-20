@@ -205,7 +205,18 @@ public function rdv($rdv)
 {
   $req = $this->connexion_bdd()->prepare('INSERT INTO rdv(id_patient, id_medecin, id_motif, date_rdv, heure_id) VALUE (:id_patient, :id_medecin, :id_motif, :date_rdv, :heure_id)');
   $req->execute($this->getmethod($rdv));
+}
 
+/**
+* @param RDV
+* Appointment booking visibilty
+*/
+public function get_rdv()
+{
+  $request = $this->connexion_bdd()->('SELECT * FROM rdv');
+  $request->execute();
+  $rdv = $request->fetchAll();
+  return $rdv;
 }
 
  /**

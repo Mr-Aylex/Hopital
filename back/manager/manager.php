@@ -213,7 +213,7 @@ public function rdv($rdv)
 */
 public function get_rdv()
 {
-  $request = $this->connexion_bdd()->('SELECT * FROM rdv');
+  $request = $this->connexion_bdd()->prepare('SELECT * FROM rdv');
   $request->execute();
   $rdv = $request->fetchAll();
   return $rdv;

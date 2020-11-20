@@ -4,8 +4,10 @@
 include "../include/header.php";
 ?>
     <body>
-        <form action="../back/send_dossier.php">
-            <input type="hidden" value="<?php  ?>" name="id_patient">
+        <form action="../back/dossier_backend.php">
+          <?php foreach ($patient as $key => $value) { ?>
+            <input type="hidden" value="<?php echo $value->getId() ?>" name="id_patient">
+          <?php } ?>
             <div>
                 <label for="">Adresse Postal</label>
                 <input type="text" name="adresse">

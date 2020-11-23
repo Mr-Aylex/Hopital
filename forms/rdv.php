@@ -1,8 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 
 <?php
 include '../include/header.php';
+$a=0;
+if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
+    $a = 1;
+}
 ?>
 
 <div class="hero" style="margin-top: 150px">
@@ -22,15 +26,20 @@ include '../include/header.php';
                     <option value="0">-- Choisissez une spetialité ---</option>
                     <?php foreach ($spes as $key => $spe) { ?>
                         <option value="<?php echo $spe['id'] ?>"><?php echo $spe['nom_spe'] ?></option>
-                    <?php } ?>
+                        <?php if ($a ==1)  {
+                            if ($spe['id']==$_GET['id_spe']) { ?>
+                        <option value="<?php echo $spe['id'] ?>" selected><?php echo $spe['nom_spe'] ?></option>
+                    <?php } } } ?>
                 </select>
             </div>
         </div>
           <select name="id_motif" >
-              <option value="">--Motif du rendez-vous motif--</option>
+              <option value="0">--Motif du rendez-vous motif--</option>
+
           </select>
           <select name="id_medecin" onchange="medecin(this.form)">
               <option value="0">--Medecin--</option>
+              <?php ?>
           </select>
 
        <div class="form-group row">
@@ -66,6 +75,7 @@ include '../include/header.php';
 
 </html>
 <script>
+
     function medecin(form) {
         change_medecin(form);
     }
@@ -136,6 +146,7 @@ include '../include/header.php';
                 // form.motif.options[i+1].text=motif['nom_motif'];
             }
         }
+
         for (var cle in medecins) {
             var medecin = medecins[cle];
             if (medecin['id_spe']==speid) {

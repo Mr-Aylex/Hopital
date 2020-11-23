@@ -14,6 +14,11 @@ include "../include/header.php";
       <input type="submit" class="btn btn-info" value="Exporter en XLS">
     </form>
 </div>
+<div>
+    <form action="../back/export_rdv_backend.php" method="post">
+      <input type="submit" class="btn btn-info" value="Exporter RDV en XLS">
+    </form>
+</div>
 
 </body>
 </html>

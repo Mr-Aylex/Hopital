@@ -219,6 +219,26 @@ public function get_rdv()
   return $rdv;
 }
 
+/**
+* @param RDV
+* Export Appointment Booking
+*/
+public function export_rdv(RDV $rdv)
+{
+  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients ORDER BY id');
+  $request->execute($this->getmethod($rdv));
+  $result = $request->fetchAll();
+  $excel = "Id \t Id_Patient \t Id_medecin \t Date_rdv \n";
+  foreach($result as $row)
+  {
+    $excel .= "$row[id] \t$row[id_patient] \t$row[id_medecin] \t$row[date_rdv] \n";
+  }
+  header("Content-type: application/vnd.ms-excel");
+  header("Content-disposition: attachment; filename=rendez-vous.xls");
+  print $excel;
+  exit;
+}
+
  /**
  * @param User $medecin
  * Add doctors

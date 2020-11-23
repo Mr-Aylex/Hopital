@@ -33,14 +33,11 @@ $spes = $manager->get_spetialite();
     </div>
 
         <div class="form-group row">
-          <div class="col-md-12">
-            <input type="text" name="telephone" placeholder="Numero de téléphone" required>
+          <div class="col-md-6 mb-4 mb-lg-0">
+            <input type="text" class="form-control" name="telephone" placeholder="Numero de téléphone" required>
           </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-md-12">
-              <input type="text" name="lieu" placeholder="Ville" required>
+          <div class="col-md-6">
+              <input type="text"  class="form-control" name="lieu" placeholder="Ville" required>
           </div>
         </div>
 

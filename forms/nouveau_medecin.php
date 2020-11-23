@@ -24,9 +24,9 @@ $spes = $manager->get_spetialite();
 
     <div class="form-group row">
       <div class="col-md-12">
-          <select name="nom_spe" id="" class="form-control">
+          <select name="nom_spe" id="" class="form-control" required>
               <?php foreach ($spes as $key => $value) { ?>
-              <option value="<?php echo $value->getId() ?>"><?php echo $value->getNom_spe() ?></option>
+              <option value="<?php echo $value['id'] ?>"><?php echo $value['nom_spe'] ?></option>
               <?php } ?>
           </select>
       </div>
@@ -34,13 +34,13 @@ $spes = $manager->get_spetialite();
 
         <div class="form-group row">
           <div class="col-md-12">
-            <input type="text" name="telephone" placeholder="Numero de téléphone">
+            <input type="text" name="telephone" placeholder="Numero de téléphone" required>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="form-group row">
-              <input type="text" name="lieu" placeholder="Ville">
+          <div class="col-md-12">
+              <input type="text" name="lieu" placeholder="Ville" required>
           </div>
         </div>
 

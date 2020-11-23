@@ -7,6 +7,16 @@ $rdv = new rdv($_POST);
 var_dump($_POST);
 var_dump($rdv);
 $manager->rdv($rdv);
-header('Location: ../index.php');
+$result = $manager->get_rdv($user);
+if($result)
+{
+  session_start();
+  $_SESSION['user'] = serialize($user);
+  header('Location: ../index.php');
+}
+else {
+  header('Location: ../rdv.php');
+}
+
 
  ?>

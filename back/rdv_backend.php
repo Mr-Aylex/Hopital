@@ -15,7 +15,7 @@ if($result)
   header('Location: ../index.php');
 }
 else {
-  header('Location: ../rdv.php');
+  header('Location: ../forms/rdv.php');
 }
 
 

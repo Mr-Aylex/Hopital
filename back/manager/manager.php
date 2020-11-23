@@ -225,7 +225,7 @@ public function get_rdv()
 */
 public function export_rdv(RDV $rdv)
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients ORDER BY id');
+  $request = $this->connexion_bdd()->prepare('SELECT * FROM rdv ORDER BY id');
   $request->execute($this->getmethod($rdv));
   $result = $request->fetchAll();
   $excel = "Id \t Id_Patient \t Id_medecin \t Date_rdv \n";
@@ -234,7 +234,7 @@ public function export_rdv(RDV $rdv)
     $excel .= "$row[id] \t$row[id_patient] \t$row[id_medecin] \t$row[date_rdv] \n";
   }
   header("Content-type: application/vnd.ms-excel");
-  header("Content-disposition: attachment; filename=rendez-vous.xls");
+  header("Content-disposition: attachment; filename=rdv.xls");
   print $excel;
   exit;
 }

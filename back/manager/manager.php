@@ -166,14 +166,12 @@ public function new_mdp(User $user)
 */
 public function add_dossier(Dossier $dossier)
 {
-    $request = $this->connexion_bdd()->prepare(
-        'INSERT INTO dossier_patients (id_patient, adresse_post, mutuelle, num_ss, opt, regime)
-                VALUES (:id_patient, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
+    $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (id_patient, mail, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:id_patient, :mail, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
     $request->execute(array(
-        'id_patient'=>$dossier->getId(),
-        'adresse_post' => $dossier->getAdresse_Post(),
+        'mail' => $dossier->getMail(),
+        'adresse_post' => $dossier->getAdressePost(),
         'mutuelle' => $dossier->getMutuelle(),
-        'num_ss' => $dossier->getNum_SS(),
+        'num_ss' => $dossier->getNumSS(),
         'opt' => $dossier->getOpt(),
         'regime' => $dossier->getRegime()
     ));
@@ -185,13 +183,15 @@ public function add_dossier(Dossier $dossier)
 */
 public function export_dossier(Dossier $exporting)
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients ORDER BY id');
+  $request = $this->connexion_bdd()->prepare(
+    'SELECT utilisateur.nom, utilisateur.prenom, utilisateur.mail, adresse_post, mutuelle, num_ss, opt, regime
+    FROM dossier_patients INNER JOIN utilisateur ON utilisateur.id = id_patient');
   $request->execute($this->getmethod($exporting));
   $result = $request->fetchAll();
-  $excel = "Id \t Id_Patient \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";
+  $excel = "Nom \t Prénom \t Mail \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";
   foreach($result as $row)
   {
-    $excel .= "$row[id] \t$row[adresse_post] \t$row[mutuelle] \t$row[num_ss] \t$row[opt] \t$row[regime] \n";
+    $excel .= "$row[nom] \t $row[prenom] \t $row[mail] \t$row[adresse_post] \t$row[mutuelle] \t$row[num_ss] \t$row[opt] \t$row[regime] \n";
   }
   header("Content-type: application/vnd.ms-excel");
   header("Content-disposition: attachment; filename=dossier-patients.xls");
@@ -230,13 +230,16 @@ public function get_rdv()
 */
 public function export_rdv(RDV $rdv)
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM rdv ORDER BY id');
+  $request = $this->connexion_bdd()->prepare(
+    'SELECT utilisateur.nom, motif.nom_motif,specialites.nom_spe, heure.nom_heure, date_rdv FROM rdv INNER JOIN medecin ON id_medecin = medecin.id
+    INNER JOIN utilisateur ON medecin.id_user = utilisateur.id INNER JOIN heure ON heure_id = heure.id INNER JOIN specialites ON specialites.id = medecin.id_specialite
+    INNER JOIN motif ON motif.id = rdv.id_motif');
   $request->execute($this->getmethod($rdv));
   $result = $request->fetchAll();
-  $excel = "Id \t Id_Patient \t Id_medecin \t Date_rdv \n";
+  $excel = "Médecin \t Motif \t Spécialité \t Horaire \t Date du RDV\n";
   foreach($result as $row)
   {
-    $excel .= "$row[id] \t$row[id_patient] \t$row[id_medecin] \t$row[date_rdv] \n";
+    $excel .= "$row[nom] \t $row[nom_motif] \t $row[nom_spe] \t$row[nom_heure] \t$row[date_rdv] \n";
   }
   header("Content-type: application/vnd.ms-excel");
   header("Content-disposition: attachment; filename=rdv.xls");

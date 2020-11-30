@@ -1,6 +1,8 @@
 <?php
 include "../include/header.php";
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/spe.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/medecin.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
  ?>
 
@@ -36,12 +38,30 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
       </td>
       </tbody>
   </table>
-    <table>
-        <thread>
-
-        </thread>
+    <table class="table table-bordered container" style="margin-top: 100px;">
+        <thead>
+          <tr>
+            <th>Médecin</th>
+            <th>Motif</th>
+            <th>Spécialité</th>
+            <th>Horaire</th>
+            <th>Date du RDV</th>
+          </tr>
+        </thead>
+        <?php
+        $manager = new manager();
+        $b = $manager->get_rdv(unserialize($_SESSION['user'])->getId());
+         ?>
         <tbody>
-
+          <tr>
+          <?php foreach($b as $key=>$value) {?>
+          <td> <?php echo 'Dr '.$value['nom'];?> </td>
+          <td> <?php echo $value['nom_motif']; ?> </td>
+          <td> <?php echo $value['nom_spe']; ?> </td>
+          <td> <?php echo $value['nom_heure']; ?> </td>
+          <td> <?php echo $value['date_rdv']; ?> </td>
+        <?php }; ?>
+          </tr>
         </tbody>
     </table>
 

@@ -213,7 +213,10 @@ public function rdv($rdv)
 */
 public function get_rdv()
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM rdv');
+  $request = $this->connexion_bdd()->prepare(
+    'SELECT utilisateur.nom, motif.nom_motif,specialites.nom_spe, heure.nom_heure, date_rdv FROM rdv INNER JOIN medecin ON id_medecin = medecin.id
+    INNER JOIN utilisateur ON medecin.id_user = utilisateur.id INNER JOIN heure ON heure_id = heure.id INNER JOIN specialites ON specialites.id = medecin.id_specialite
+    INNER JOIN motif ON motif.id = rdv.id_motif');
   $request->execute();
   $rdv = $request->fetchAll();
   return $rdv;

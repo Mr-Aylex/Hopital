@@ -14,7 +14,7 @@ class dossier
    /**
    * @var string
    */
-   protected $email;
+   protected $mail;
    /**
    * @var string
    */
@@ -77,7 +77,7 @@ class dossier
     /**
     * @return int
     */
-    public function getIdPatient()
+    public function getId_Patient()
     {
       return $this->id_patient;
     }
@@ -85,7 +85,7 @@ class dossier
     /**
     * @param int $id_patient
     */
-    public function setIdPatient($id_patient)
+    public function setId_Patient($id_patient)
     {
       $this->id_patient = $id_patient;
     }
@@ -93,23 +93,23 @@ class dossier
     /**
     * @return string
     */
-    public function getEmail()
+    public function getMail()
     {
-      return $this->email;
+      return $this->mail;
     }
 
     /**
-    * @param string $email
+    * @param string $mail
     */
-    public function setEmail($email)
+    public function setMail($mail)
     {
-      $this->email = $email;
+      $this->mail = $mail;
     }
 
     /**
     * @return string
     */
-    public function getAdressePost()
+    public function getAdresse_Post()
     {
       return $this->adresse_post;
     }
@@ -117,7 +117,7 @@ class dossier
     /**
     * @param string $adresse_post
     */
-    public function setAdressePost($adresse_post)
+    public function setAdresse_Post($adresse_post)
     {
       $this->adresse_post = $adresse_post;
     }
@@ -141,7 +141,7 @@ class dossier
     /**
     * @return string
     */
-    public function getNumSS()
+    public function getNum_SS()
     {
       return $this->num_ss;
     }
@@ -149,7 +149,7 @@ class dossier
     /**
     * @param string $num_ss
     */
-    public function setNumSS($num_ss)
+    public function setNum_SS($num_ss)
     {
       $this->num_ss = $num_ss;
     }

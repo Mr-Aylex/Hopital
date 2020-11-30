@@ -33,7 +33,7 @@ if ($a==true) {
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Oublie de mot de passe';
-        $mail->Body    = '<p>Clique <a href="http://localhost/Hopital/forms/new_mdp.php?mail='.$addresse.'">ici</a> pour reinistailiser votre mot de passe</p>';
+        $mail->Body    = '<p>Clique <a href="http://localhost2/Hopital/forms/new_mdp.php?mail='.$addresse.'">ici</a> pour reinistailiser votre mot de passe</p>';
         $mail->AltBody = 'Hopital Robert Schuman';
 
         $mail->send();
@@ -42,9 +42,7 @@ if ($a==true) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
-else {
-    header('Location: ../index.php');
-}
+header('Location: ../index.php');
 
 ;
 

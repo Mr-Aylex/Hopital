@@ -166,12 +166,14 @@ public function new_mdp(User $user)
 */
 public function add_dossier(Dossier $dossier)
 {
-    $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (id_patient, mail, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:id_patient, :mail, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
+    $request = $this->connexion_bdd()->prepare(
+        'INSERT INTO dossier_patients (id_patient, adresse_post, mutuelle, num_ss, opt, regime)
+                VALUES (:id_patient, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
     $request->execute(array(
-        'mail' => $dossier->getMail(),
-        'adresse_post' => $dossier->getAdressePost(),
+        'id_patient'=>$dossier->getId(),
+        'adresse_post' => $dossier->getAdresse_Post(),
         'mutuelle' => $dossier->getMutuelle(),
-        'num_ss' => $dossier->getNumSS(),
+        'num_ss' => $dossier->getNum_SS(),
         'opt' => $dossier->getOpt(),
         'regime' => $dossier->getRegime()
     ));
@@ -186,10 +188,10 @@ public function export_dossier(Dossier $exporting)
   $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients ORDER BY id');
   $request->execute($this->getmethod($exporting));
   $result = $request->fetchAll();
-  $excel = "Id \t Id_Patient \t Mail \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";
+  $excel = "Id \t Id_Patient \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";
   foreach($result as $row)
   {
-    $excel .= "$row[id] \t$row[email] \t$row[adresse_post] \t$row[mutuelle] \t$row[num_ss] \t$row[opt] \t$row[regime] \n";
+    $excel .= "$row[id] \t$row[adresse_post] \t$row[mutuelle] \t$row[num_ss] \t$row[opt] \t$row[regime] \n";
   }
   header("Content-type: application/vnd.ms-excel");
   header("Content-disposition: attachment; filename=dossier-patients.xls");

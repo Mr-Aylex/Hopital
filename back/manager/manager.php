@@ -183,13 +183,15 @@ public function add_dossier(Dossier $dossier)
 */
 public function export_dossier(Dossier $exporting)
 {
-  $request = $this->connexion_bdd()->prepare('SELECT * FROM dossier_patients ORDER BY id');
+  $request = $this->connexion_bdd()->prepare(
+    'SELECT utilisateur.nom, utilisateur.prenom, utilisateur.mail, adresse_post, mutuelle, num_ss, opt, regime
+    FROM dossier_patients INNER JOIN utilisateur ON utilisateur.id = id_patient');
   $request->execute($this->getmethod($exporting));
   $result = $request->fetchAll();
-  $excel = "Id \t Id_Patient \t Mail \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";
+  $excel = "Nom \t Prénom \t Mail \t Adresse Postale \t Mutuelle \t Numero_Securite_Social \t Option \t Regime \n";
   foreach($result as $row)
   {
-    $excel .= "$row[id] \t$row[email] \t$row[adresse_post] \t$row[mutuelle] \t$row[num_ss] \t$row[opt] \t$row[regime] \n";
+    $excel .= "$row[nom] \t $row[prenom] \t $row[mail] \t$row[adresse_post] \t$row[mutuelle] \t$row[num_ss] \t$row[opt] \t$row[regime] \n";
   }
   header("Content-type: application/vnd.ms-excel");
   header("Content-disposition: attachment; filename=dossier-patients.xls");

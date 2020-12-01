@@ -5,10 +5,22 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Hopital/back/entity/medecin.php");
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
 $manager = new manager();
+$tab = $manager->get_spetialite();
 //$a = $manager->afficher_medecin();
 ?>
     <body style="background-image: url('/Hopital/images/medecin.jpg')">
     <div style="margin-top: 120px">
+
+            <input type="text" name="nom" id="nom">
+            <select name="spe" id="spe">
+                <option value="0">-- Spétialité --</option>
+                <?php foreach($tab as $key=>$value) { ?>
+                    <option value="<?= $value['id'] ?>"><?= $value['nom_spe'] ?></option>
+                <?php } ?>
+            </select>
+            <button id="btn">Filtrer</button>
+
+
         <div class="container" style="background-color: rgba(170, 170, 170, 0.95);padding: 10px;border-radius: 10px;">
             <style>
                 .box {
@@ -17,17 +29,6 @@ $manager = new manager();
                 }
             </style>
             <div class="box" id="box">
-                <?php
-                  //           foreach ($a as $key=>$value) { ?>
-                <div style="margin-bottom: 10px" id="inbox">
-                    <div>
-                       <?php // echo 'Dr '.$value['nom'] ?>
-                    </div>
-                    <div>
-                        <?php // echo $value['specialite'] ?>
-                    </div>
-                </div>
-                <?php // } ?>
             </div>
         </div>
     </div>
@@ -36,8 +37,13 @@ $manager = new manager();
 
 </html>
 <script>
+    document.getElementById("btn").addEventListener("click", function() {
+        test2();
+    });
     test2();
     function test2() {
+        nom = null;
+        spe = null;
         var xhttp;
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -47,10 +53,10 @@ $manager = new manager();
                 for (var key in heures) {
                     heure = heures[key];
                     heure1 = heure.split(',');
-                    option = document.createElement('label');
-                    option.text = heure1['1'];
-                    option2 = document.createElement('label');
-                    option2.text = heure1['4'];
+                    option = document.createElement('div');
+                    option.innerHTML = heure1['1'];
+                    option2 = document.createElement('div');
+                    option2.innerHTML = heure1['3'];
                     div = document.createElement('div');
                     div.setAttribute('class','inbox');
                     div.append(option);
@@ -60,7 +66,19 @@ $manager = new manager();
                 document.getElementById('box').lastChild.remove();
             }
         };
-        xhttp.open("GET", "../back/afficher_medecin.php", true);
+
+        nom = document.getElementById('nom').value;
+        spe = document.getElementById('spe').value;
+        nom = 'resr';
+        spe = '1';
+        /**
+         * TODO
+         * termniner les filtres
+         */
+        console.log(nom);
+        console.log(spe);
+        //xhttp.open("GET", "../back/afficher_medecin.php", true);
+        xhttp.open("GET", "../back/afficher_medecin.php?nom=".nom."&spe=".spe, true);
         xhttp.send();
     }
 </script>

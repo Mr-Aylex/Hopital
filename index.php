@@ -4,9 +4,9 @@
 <?php
 include "include/header.php";
 ?>
-      
+
       <div class="hero" style="background-image: url('/Hopital/images/hero_bg_1.jpg');">
-        
+
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-8 intro text-center">
@@ -22,7 +22,7 @@ include "include/header.php";
         <div class="container-fluid px-0">
           <div class="row no-gutters align-items-stretch">
             <div class="col-6 col-sm-6 col-md col-lg h-100">
-              <a href="#" class="service">
+              <a href="/Hopital/web/urgence.php" class="service">
                 <div class="icon-wrap">
                     <!--<span class="flaticon-acupuncture-2"></span>-->
                   </div>
@@ -30,7 +30,7 @@ include "include/header.php";
                 </a>
               </div>
               <div class="col-6 col-sm-6 col-md col-lg h-100">
-                <a href="#" class="service">
+                <a href="/Hopital/web/chirurgie.php" class="service">
                   <div class="icon-wrap">
                       <!--<span class="flaticon-therapy"></span>-->
                     </div>
@@ -38,15 +38,15 @@ include "include/header.php";
                   </a>
                 </div>
                 <div class="col-6 col-sm-6 col-md col-lg h-100">
-                  <a href="#" class="service">
+                  <a href="/Hopital/web/img_scan.php" class="service">
                     <div class="icon-wrap">
                         <!--<span class="flaticon-acupuncture-1"></span>-->
                       </div>
-                      <h3>Imagerie et scanaire</h3>
+                      <h3>Imagerie et scanner</h3>
                     </a>
                   </div>
                   <div class="col-6 col-sm-6 col-md col-lg h-100">
-                    <a href="#" class="service">
+                    <a href="/Hopital/web/consultation.php" class="service">
                       <div class="icon-wrap">
                         <!--<span class="flaticon-herbal"></span>-->
                 </div>
@@ -67,4 +67,3 @@ include "include/header.php";
   </body>
 
 </html>
-

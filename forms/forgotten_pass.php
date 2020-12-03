@@ -28,6 +28,7 @@ include "../include/header.php";
           <div class="form-group row">
             <div class="col-md-6 mr-auto">
               <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Valider">
+              <input type="reset" class="btn btn-block btn-secondary text-white py-3 px-5" value="Annuler" onclick="location.href='../forms/sign_in.php'"/>
             </div>
           </div>
         </form>

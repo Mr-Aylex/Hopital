@@ -25,10 +25,10 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
                 <select name="id_spe" onChange='Choix(this.form);change_medecin(this.form)'>
                     <option value="0">-- Choisissez une spetialité ---</option>
                     <?php foreach ($spes as $key => $spe) { ?>
-                        <option value="<?php echo $spe['id'] ?>"><?php echo $spe['nom_spe'] ?></option>
+                        <option value="<?= $spe['id'] ?>"><?= $spe['nom_spe'] ?></option>
                         <?php if ($a ==1)  {
                             if ($spe['id']==$_GET['id_spe']) { ?>
-                        <option value="<?php echo $spe['id'] ?>" selected><?php echo $spe['nom_spe'] ?></option>
+                        <option value="<?= $spe['id'] ?>" selected><?= $spe['nom_spe'] ?></option>
                     <?php } } } ?>
                 </select>
             </div>

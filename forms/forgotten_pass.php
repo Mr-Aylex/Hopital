@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="fr">
 <?php
 include "../include/header.php";
 ?>
@@ -10,7 +9,6 @@ include "../include/header.php";
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-8 intro text-center">
         <h1 class="text-white">Réinitialisation du mot de passe</h1>
-        <a href="/Hopital/index.php">Home</a> <span class="mx-3 text-white">/</span> <strong class="text-white">Connexion</strong>
       </div>
     </div>
   </div>

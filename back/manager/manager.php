@@ -93,17 +93,16 @@ class manager
         $execute = null;
      if(isset($array['spe']) and isset($array['nom'])) {
          $execute = array();
-         if ($array['spe']!=0 and $array['nom'] != ' ') {
-             $request = 'WHERE specialites.id = :spe AND utilisateur.nom = :nom';
+         if ($array['spe'] != '0' and $array['nom'] != '') {
+             $request = 'WHERE specialites.nom = :spe AND utilisateur.nom = :nom';
              $execute['nom'] = $array['nom'];
              $execute['spe'] = $array['spe'];
-
          }
-         elseif ($array['nom']!= ' ') {
+         elseif ($array['nom'] != '') {
              $request = 'WHERE utilisateur.nom = :nom';
              $execute['nom'] = $array['nom'];
          }
-         elseif ($array['spe'] != 0){
+         elseif ($array['spe'] != '0'){
              $request = 'WHERE specialites.id = :spe';
              $execute['spe'] = $array['spe'];
          }

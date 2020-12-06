@@ -19,8 +19,6 @@ $tab = $manager->get_spetialite();
                 <?php } ?>
             </select>
             <button id="btn">Filtrer</button>
-
-
         <div class="container" style="background-color: rgba(170, 170, 170, 0.95);padding: 10px;border-radius: 10px;">
             <style>
                 .box {
@@ -32,9 +30,7 @@ $tab = $manager->get_spetialite();
             </div>
         </div>
     </div>
-
     </body>
-
 </html>
 <script>
     document.getElementById("btn").addEventListener("click", function() {
@@ -46,10 +42,13 @@ $tab = $manager->get_spetialite();
         spe = null;
         var xhttp;
         xhttp = new XMLHttpRequest();
+
+        while (document.getElementById('box').firstChild) {
+            document.getElementById('box').removeChild(document.getElementById('box').firstChild);
+        }
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 heures = this.responseText.split(';');
-                console.log(heures);
                 for (var key in heures) {
                     heure = heures[key];
                     heure1 = heure.split(',');
@@ -66,19 +65,9 @@ $tab = $manager->get_spetialite();
                 document.getElementById('box').lastChild.remove();
             }
         };
-
         nom = document.getElementById('nom').value;
         spe = document.getElementById('spe').value;
-        nom = 'resr';
-        spe = '1';
-        /**
-         * TODO
-         * termniner les filtres
-         */
-        console.log(nom);
-        console.log(spe);
-        //xhttp.open("GET", "../back/afficher_medecin.php", true);
-        xhttp.open("GET", "../back/afficher_medecin.php?nom=".nom."&spe=".spe, true);
+        xhttp.open("GET", "../back/afficher_medecin.php?nom="+nom+"&spe="+spe, true);
         xhttp.send();
     }
 </script>

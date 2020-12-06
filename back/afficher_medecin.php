@@ -7,4 +7,3 @@ foreach ($a as $key => $value) {
     echo ';';
 }
 ?>
-

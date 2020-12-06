@@ -9,7 +9,7 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
 }
 ?>
 
-<div class="hero" style="margin-top: 150px">
+<div class="hero" style="margin-top: 98px;background-image: url('/Hopital/images/hero_bg_1.jpg')">
     <?php
     $manager = new manager();
     $spes = $manager->get_spetialite();
@@ -22,7 +22,7 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
       <form name="monRdv" action="../back/rdv_backend.php" method="post">
         <div class="form-group row">
             <div class="col-md-12">
-                <select name="id_spe" onChange='Choix(this.form);change_medecin(this.form)'>
+                <select name="id_spe" onChange='Choix(this.form);change_medecin(this.form)' style="height: 30px;border-radius: 5px">
                     <option value="0">-- Choisissez une spetialité ---</option>
                     <?php foreach ($spes as $key => $spe) { ?>
                         <option value="<?= $spe['id'] ?>"><?= $spe['nom_spe'] ?></option>
@@ -33,11 +33,11 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
                 </select>
             </div>
         </div>
-          <select name="id_motif" >
+          <select name="id_motif" style="height: 30px;border-radius: 5px">
               <option value="0">--Motif du rendez-vous motif--</option>
 
           </select>
-          <select name="id_medecin" onchange="medecin(this.form)">
+          <select name="id_medecin" onchange="medecin(this.form)" style="height: 30px;border-radius: 5px">
               <option value="0">--Medecin--</option>
               <?php ?>
           </select>
@@ -51,12 +51,11 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
           <div class="form-group row">
               <div>
                   <div class="form-group">
-                      <label for="" class="form-check-label">Date</label>
-
-                      <input id="date" type="date" value="" name="date_rdv" min="<?= date('Y-m-d');  ?>" onchange="afficher_heure(this.form)" disabled>
+                      <label for="" class="form-check-label" style="color: #0b0b0b">Date</label>
+                      <input id="date" type="date" value="" name="date_rdv" min="<?= date('Y-m-d');  ?>" onchange="afficher_heure(this.form)" disabled style="height: 30px;border-radius: 5px">
                   </div>
-                  <label for="">Heure</label>
-                  <select name="heure_id" id="heure">
+                  <label for="" style="color: #0b0b0b">Heure</label>
+                  <select name="heure_id" id="heure" style="height: 30px;border-radius: 5px">
                       <option value="0">--Heure--</option>
                   </select>
               </div>
@@ -103,7 +102,6 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
                 for (var key in heures) {
                     heure = heures[key];
                     heure1 = heure.split(',');
-                    console.log(heure1);
                     option = document.createElement('option');
                     option.text = heure1['1'];
                     option.setAttribute('value',heure1['0']);
@@ -143,7 +141,6 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
                 option.setAttribute('value',motif['id']);
                 option.setAttribute('classe','motif');
                 form.id_motif.appendChild(option);
-                // form.motif.options[i+1].text=motif['nom_motif'];
             }
         }
 
@@ -155,7 +152,6 @@ if (isset($_GET['id_medecin']) and isset($_GET['id_spe'])) {
                 option.setAttribute('value',medecin['id']);
                 option.setAttribute('classe','motif');
                 form.id_medecin.appendChild(option);
-                //form.motif.options[i+1].text=motif['nom_motif'];
             }
         }
     }

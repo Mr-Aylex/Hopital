@@ -4,70 +4,69 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/spe.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/medecin.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
- ?>
+?>
 
-<!doctype html>
-<html lang="en">
-<body style="background-color: #0f6674">
-<div class="container">
-    <h7>Informations personnelles</h7>
-</div>
-  <table class="table table-bordered container" style="margin-top: 100px;">
+    <!doctype html>
+    <html lang="en">
+    <body style="background-image: url('/Hopital/images/hero_bg_1.jpg');background-repeat: no-repeat">
+    <div class="container">
+        <h7>Informations personnelles</h7>
+    </div>
+    <table class="table table-bordered container" style="margin-top: 100px;background-color: rgba(170, 170, 170, 0.95)">
 
-    <thread>
-      <tr>
-        <th>Nom</th>
-          <th>Prenom</th>
-          <th>Mail</th>
-          <th></th>
-      </tr>
-    </thread>
-    <?php
-    $manager = new manager();
-    $a = $manager->recovery_data(unserialize($_SESSION['user'])->getId());
-    $a = unserialize($_SESSION['user']); ?>
-      <tbody>
+        <thread>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Mail</th>
+                <th></th>
+            </tr>
+        </thread>
+        <?php
+        $manager = new manager();
+        $a = $manager->recovery_data(unserialize($_SESSION['user'])->getId());
+        $a = unserialize($_SESSION['user']); ?>
+        <tbody>
         <td> <?php echo $a->getNom(); ?> </td>
         <td> <?php echo $a->getPrenom(); ?> </td>
         <td> <?php echo $a->getMail(); ?> </td>
-      <td>
-          <form action="../forms/update.php" method="post">
-              <input type="hidden" value="<?php echo $a->getId() ?>" name="id">
-              <input type="submit" value="Modifier">
-          </form>
-      </td>
-      </tbody>
-  </table>
-    <table class="table table-bordered container" style="margin-top: 100px;">
+        <td>
+            <form action="../forms/update.php" method="post">
+                <input type="hidden" value="<?php echo $a->getId() ?>" name="id">
+                <input type="submit" value="Modifier">
+            </form>
+        </td>
+        </tbody>
+    </table>
+    <table class="table table-bordered container" style="margin-top: 100px;background-color: rgba(170, 170, 170, 0.95)">
         <thead>
-          <tr>
+        <tr>
             <th>Médecin</th>
             <th>Motif</th>
             <th>Spécialité</th>
             <th>Horaire</th>
             <th>Date du RDV</th>
-          </tr>
+        </tr>
         </thead>
         <?php
         $manager = new manager();
         $b = $manager->get_rdv(unserialize($_SESSION['user'])->getId());
-         ?>
+        ?>
         <tbody>
-          <tr>
-          <?php foreach($b as $key=>$value) {?>
-          <td> <?php echo 'Dr '.$value['nom'];?> </td>
-          <td> <?php echo $value['nom_motif']; ?> </td>
-          <td> <?php echo $value['nom_spe']; ?> </td>
-          <td> <?php echo $value['nom_heure']; ?> </td>
-          <td> <?php echo $value['date_rdv']; ?> </td>
+        <?php foreach($b as $key=>$value) {?>
+            <tr>
+                <td> <?php echo 'Dr '.$value['nom'];?> </td>
+                <td> <?php echo $value['nom_motif']; ?> </td>
+                <td> <?php echo $value['nom_spe']; ?> </td>
+                <td> <?php echo $value['nom_heure']; ?> </td>
+                <td> <?php echo $value['date_rdv']; ?> </td>
+            </tr>
         <?php }; ?>
-          </tr>
         </tbody>
     </table>
+    </body>
 
+    </html>
 <?php
 include "../include/footer.php";
 ?>
-
-</body>
-</html>

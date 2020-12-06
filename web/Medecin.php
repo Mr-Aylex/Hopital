@@ -8,29 +8,38 @@ $manager = new manager();
 $tab = $manager->get_spetialite();
 //$a = $manager->afficher_medecin();
 ?>
-    <body style="background-image: url('/Hopital/images/medecin.jpg')">
-    <div style="margin-top: 120px">
+<body style="background-image: url('/Hopital/images/medecin.jpg');background-repeat: no-repeat;">
+<div style="margin-top: 120px" class="container">
 
-            <input type="text" name="nom" id="nom">
-            <select name="spe" id="spe">
-                <option value="0">-- Spétialité --</option>
-                <?php foreach($tab as $key=>$value) { ?>
-                    <option value="<?= $value['id'] ?>"><?= $value['nom_spe'] ?></option>
-                <?php } ?>
-            </select>
-            <button id="btn">Filtrer</button>
-        <div class="container" style="background-color: rgba(170, 170, 170, 0.95);padding: 10px;border-radius: 10px;">
-            <style>
-                .box {
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            </style>
-            <div class="box" id="box">
-            </div>
+    <input type="text" name="nom" id="nom" style="border-radius: 5px;border: #6c757d">
+    <select name="spe" id="spe" style="height: 30px;border-radius: 5px;border: #6c757d">
+        <option value="0">-- Spétialité --</option>
+        <?php foreach($tab as $key=>$value) { ?>
+            <option value="<?= $value['id'] ?>"><?= $value['nom_spe'] ?></option>
+        <?php } ?>
+    </select>
+    <button id="btn" style="border: #6c757d">Filtrer</button>
+    <div  style="background-color: rgba(170, 170, 170, 0.95);padding: 10px;border-radius: 10px;margin-top: 10px">
+        <style>
+            .box {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .inbox {
+                margin-top: 5px;
+                margin-left: 5px;
+                border-style: solid;
+                border-color: #342f2f;
+                border-width: thin;
+                padding: 2px;
+                border-radius: 10px;
+            }
+        </style>
+        <div class="box" id="box">
         </div>
     </div>
-    </body>
+</div>
+</body>
 </html>
 <script>
     document.getElementById("btn").addEventListener("click", function() {

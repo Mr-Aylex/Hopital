@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 08 nov. 2020 à 20:58
+-- Généré le : lun. 07 déc. 2020 à 16:06
 -- Version du serveur :  8.0.21
 -- Version de PHP : 7.4.9
 
@@ -44,7 +44,6 @@ DROP TABLE IF EXISTS `dossier_patients`;
 CREATE TABLE IF NOT EXISTS `dossier_patients` (
   `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_patient` int UNSIGNED NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `adresse_post` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `mutuelle` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `num_ss` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
@@ -129,15 +128,7 @@ CREATE TABLE IF NOT EXISTS `medecin` (
   PRIMARY KEY (`id`),
   KEY `fk_spe_to_medecin` (`id_specialite`),
   KEY `fk_id_user_to_medecin` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Déchargement des données de la table `medecin`
---
-
-INSERT INTO `medecin` (`id`, `id_user`, `id_specialite`, `telephone`, `lieu`) VALUES
-(1, 19, 1, '0787758610', ''),
-(3, 21, 1, '0787758610', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -148,21 +139,11 @@ INSERT INTO `medecin` (`id`, `id_user`, `id_specialite`, `telephone`, `lieu`) VA
 DROP TABLE IF EXISTS `motif`;
 CREATE TABLE IF NOT EXISTS `motif` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nom_motif` varchar(255) COLLATE utf8_bin NOT NULL,
+  `nom_motif` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `id_spe` int UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_spe_to_motif` (`id_spe`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Déchargement des données de la table `motif`
---
-
-INSERT INTO `motif` (`id`, `nom_motif`, `id_spe`) VALUES
-(2, 'toux', 1),
-(3, 'fièvre', 1),
-(4, 'cancer', 2),
-(5, 'alzaimer', 2);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -175,10 +156,14 @@ CREATE TABLE IF NOT EXISTS `rdv` (
   `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_patient` int UNSIGNED NOT NULL,
   `id_medecin` int UNSIGNED NOT NULL,
+  `id_motif` int UNSIGNED NOT NULL,
   `date_rdv` date NOT NULL,
+  `heure_id` int UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_to_idpatien` (`id_patient`),
-  KEY `fk_medecin_to_idmedecin` (`id_medecin`) USING BTREE
+  KEY `fk_medecin_to_idmedecin` (`id_medecin`) USING BTREE,
+  KEY `fk_id_motif_to_rdv` (`id_motif`),
+  KEY `fk_id_heure_to_rdv` (`heure_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -192,25 +177,7 @@ CREATE TABLE IF NOT EXISTS `specialites` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom_spe` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Déchargement des données de la table `specialites`
---
-
-INSERT INTO `specialites` (`id`, `nom_spe`) VALUES
-(1, 'généraliste'),
-(2, 'neurologie'),
-(3, 'addictologie'),
-(4, 'cancérologie'),
-(5, 'chirurgie hépato-biliaire'),
-(6, 'gastro-entérologie et hépatologie'),
-(7, 'gériatrie'),
-(8, 'hématologie'),
-(9, 'hépatologie'),
-(10, 'infirmerie'),
-(11, 'psychiatrie'),
-(12, 'tabacologie');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -227,16 +194,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `mdp` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `role_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `role_user`) VALUES
-(1, 'CARMONE', 'Alexandre ', 'carmonealexandre@hotmail.fr', '1234', 'admin'),
-(19, 'Falgon', 'Catherine', 'test@gfz.frdsf', '1234', 'medecin'),
-(21, 'testnom', 'testprenom', 'qzedqzd@sefes.fr', '1234', 'medecin');
+(1, 'CARMONE', 'Alexandre ', 'alexandre@hotmail.fr', '827ccb0eea8a706c4c34a16891f84e7b', 'admin');
 
 --
 -- Contraintes pour les tables déchargées
@@ -259,7 +224,9 @@ ALTER TABLE `motif`
 -- Contraintes pour la table `rdv`
 --
 ALTER TABLE `rdv`
-  ADD CONSTRAINT `fk_test` FOREIGN KEY (`id_medecin`) REFERENCES `medecin` (`id`);
+  ADD CONSTRAINT `fk_id_heure_to_rdv` FOREIGN KEY (`heure_id`) REFERENCES `heure` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_id_medecin_to_rdv` FOREIGN KEY (`id_medecin`) REFERENCES `medecin` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_id_motif_to_rdv` FOREIGN KEY (`id_motif`) REFERENCES `motif` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

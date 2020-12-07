@@ -318,6 +318,10 @@ class manager
         $spe = $request->fetchAll();
         return $spe;
     }
+    public function add_specialite($spe) {
+        $request = $this->connexion_bdd()->prepare('INSERT INTO specialites(nom_spe) VALUES(:nom_spe)');
+        $request->execute($this->getmethod($spe));
+    }
     public function get_motif(){
         $request = $this->connexion_bdd()->prepare('SELECT * FROM motif');
         $request->execute();

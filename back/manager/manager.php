@@ -5,6 +5,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/Dossier.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/rdv.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/spe.php');
 
+/**
+ * Class manager
+ * Manager du site web
+ * Contient toutes les méthodes du site
+ */
 class manager
 {
     /**
@@ -84,6 +89,7 @@ class manager
     /**
      * @param $id
      * @return array
+     * retourn les données d'un utilisateur
      */
     public function recovery_data($id)
     {
@@ -94,9 +100,16 @@ class manager
         $result = $request->fetch();
         return $result;
     }
+
+    /**
+     * @param null $array
+     * @return array
+     * retourn les medecins et utilisses des filtres
+     */
     public function afficher_medecin($array = null) {
         $request = null;
         $execute = null;
+        // Modifiation de la requète sql
         if(isset($array['spe']) and isset($array['nom'])) {
             $execute = array();
             if ($array['spe'] != '0' and $array['nom'] != '') {
@@ -113,8 +126,7 @@ class manager
                 $execute['spe'] = $array['spe'];
             }
         }
-
-
+        //utilisation de la requète
         $req = $this->connexion_bdd()->prepare(
             'SELECT medecin.id, utilisateur.nom,id_specialite as id_spe,
  specialites.nom_spe as specialite FROM medecin
@@ -155,6 +167,11 @@ class manager
         ));
         //header('Location: ../index.php');
     }
+
+    /**
+     * @param $user
+     * @return user|null
+     */
     public function get_modification($user) {
         $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE mail=:mail and mdp=:mdp');
         $request->execute(array(

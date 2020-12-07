@@ -11,6 +11,9 @@ include "../include/header.php";
         <a href="../forms/nouveau_admin.php" class="btn btn-info">Ajouter un Admin</a>
     </div>
     <div style="padding-top: 10px">
+        <a href="../forms/nouveau_motif.php" class="btn btn-info">Ajouter un motif</a>
+    </div>
+    <div style="padding-top: 10px">
        <a href="../forms/nouvelle_specialite.php" class="btn btn-info">Ajouter une spécialité</a>
     </div>
     <div style="padding-top: 10px;">

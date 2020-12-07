@@ -113,7 +113,7 @@ class user
      */
     public function setMdp($mdp)
     {
-        $this->mdp = $mdp;
+        $this->mdp = md5($mdp);
     }
 
     /**

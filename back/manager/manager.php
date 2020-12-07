@@ -7,36 +7,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/spe.php');
 
 class manager
 {
-    public function getmethod($class)
-    {
-        $tab = array();
-        foreach (get_class_methods($class) as $key => $value)
-        {
-            if (strstr($value,'get')) {
-                $nom = strtolower(substr($value,3));
-                if (!is_null($class->$value())) {
-                    $tab[$nom] = $class->$value();
-                }
-            }
-        }
-        return $tab;
-    }
-    /**
-     * Connecting to database
-     */
-    public function connexion_bdd()
-    {
-        try
-        {
-            $bdd = new PDO('mysql:host=localhost;dbname=hopital;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-            die('Error :' .$e->getMessage());
-        }
-        return $bdd;
-    }
-
     /**
      * @param User $signin
      * Allows to users to sign in
@@ -53,6 +23,37 @@ class manager
         else {
             return null;
         }
+    }
+
+    /**
+     * Connecting to database
+     */
+    public function connexion_bdd()
+    {
+        try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=hopital;charset=utf8', 'root', '');
+        }
+        catch (Exception $e)
+        {
+            die('Error :' .$e->getMessage());
+        }
+        return $bdd;
+    }
+
+    public function getmethod($class)
+    {
+        $tab = array();
+        foreach (get_class_methods($class) as $key => $value)
+        {
+            if (strstr($value,'get')) {
+                $nom = strtolower(substr($value,3));
+                if (!is_null($class->$value())) {
+                    $tab[$nom] = $class->$value();
+                }
+            }
+        }
+        return $tab;
     }
 
     /**
@@ -79,6 +80,11 @@ class manager
             return 0;
         }
     }
+
+    /**
+     * @param $id
+     * @return array
+     */
     public function recovery_data($id)
     {
         $request = $this->connexion_bdd()->prepare('SELECT * FROM utilisateur WHERE id =:id');
@@ -191,15 +197,30 @@ class manager
      */
     public function add_dossier(Dossier $dossier)
     {
-        $request = $this->connexion_bdd()->prepare('INSERT INTO dossier_patients (id_patient, mail, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:id_patient, :mail, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
+        var_dump($dossier);
+        $bdd = $this->connexion_bdd();
+        $request = $bdd->prepare('INSERT INTO dossier_patients (id_patient, adresse_post, mutuelle, num_ss, opt, regime) VALUES (:id_patient, :adresse_post, :mutuelle, :num_ss, :opt, :regime)');
         $request->execute(array(
-            'mail' => $dossier->getMail(),
-            'adresse_post' => $dossier->getAdressePost(),
+            'id_patient'=>$dossier->getId_Patient(),
+            'adresse_post' => $dossier->getAdresse_Post(),
             'mutuelle' => $dossier->getMutuelle(),
-            'num_ss' => $dossier->getNumSS(),
+            'num_ss' => $dossier->getNum_SS(),
             'opt' => $dossier->getOpt(),
             'regime' => $dossier->getRegime()
         ));
+        $id = $bdd->lastInsertId();
+        $request = $bdd->prepare('DELETE FROM dossier_patients WHERE id != :id and id_patient = :id_patient');
+        $request->execute(array(
+            'id' => $id,
+            'id_patient' => $dossier->getId_Patient()
+        ));
+    }
+    public function afficher_dossier($id) {
+        $bdd = $this->connexion_bdd();
+        $request = $bdd->prepare('SELECT * FROM dossier_patients WHERE id_patient = id_patient');
+        $request->execute(array('id_patient'=>$id));
+        $a = $request->fetchAll();
+        return $a;
     }
 
     /**
@@ -238,13 +259,23 @@ class manager
      * @param RDV
      * Appointment booking visibilty
      */
-    public function get_rdv()
+    public function get_rdv($id)
     {
         $request = $this->connexion_bdd()->prepare(
             'SELECT utilisateur.nom, motif.nom_motif,specialites.nom_spe, heure.nom_heure, date_rdv FROM rdv INNER JOIN medecin ON id_medecin = medecin.id
     INNER JOIN utilisateur ON medecin.id_user = utilisateur.id INNER JOIN heure ON heure_id = heure.id INNER JOIN specialites ON specialites.id = medecin.id_specialite
-    INNER JOIN motif ON motif.id = rdv.id_motif');
-        $request->execute();
+    INNER JOIN motif ON motif.id = rdv.id_motif where id_patient = :id');
+        $request->execute(array('id'=>$id));
+        $rdv = $request->fetchAll();
+        return $rdv;
+    }
+    public function get_rdv_medecin($id) {
+        $request = $this->connexion_bdd()->prepare(
+            'SELECT utilisateur.nom,utilisateur.prenom, heure.nom_heure, motif.nom_motif, date_rdv FROM rdv
+INNER JOIN utilisateur ON rdv.id_patient = utilisateur.id
+INNER JOIN heure ON heure_id = heure.id
+INNER JOIN motif ON motif.id = rdv.id_motif where id_medecin = :id_medecin');
+        $request->execute(array('id_medecin'=>$id));
         $rdv = $request->fetchAll();
         return $rdv;
     }
@@ -318,10 +349,29 @@ class manager
         $spe = $request->fetchAll();
         return $spe;
     }
-    public function add_specialite($spe) {
-        $request = $this->connexion_bdd()->prepare('INSERT INTO specialites(nom_spe) VALUES(:nom_spe)');
-        $request->execute($this->getmethod($spe));
+
+    /**
+     * @param $array
+     */
+    public function add_motif($array) {
+        $request = $this->connexion_bdd()->prepare('INSERT INTO motif(nom_motif, id_spe) VALUES(:nom_motif, :id_spe)');
+        $request->execute(array(
+            'nom_motif'=>$array['nom_motif'],
+            'id_spe'=>$array['id_spe']
+            ));
     }
+
+    /**
+     * @param $new_spe
+     */
+    public function add_specialite($new_spe) {
+        $request = $this->connexion_bdd()->prepare('INSERT INTO specialites(nom_spe) VALUES(:nom_spe)');
+        $request->execute(array('nom_spe'=>$new_spe['nom_spe']));
+    }
+
+    /**
+     * @return array
+     */
     public function get_motif(){
         $request = $this->connexion_bdd()->prepare('SELECT * FROM motif');
         $request->execute();
@@ -357,12 +407,22 @@ class manager
         }
         header('Location: ../admin.php');
     }
+
+    /**
+     * @return array
+     */
     public function get_horaire() {
         $request = $this->connexion_bdd()->prepare('SELECT * FROM heure');
         $request->execute();
         $a = $request->fetchAll();
         return $a;
     }
+
+    /**
+     * @param $medecin
+     * @param $date
+     * @return array
+     */
     public function get_unused_horaire($medecin,$date) {
         $request = $this->connexion_bdd()->prepare('SELECT * FROM heure WHERE id not in (SELECT heure_id FROM rdv WHERE id_medecin=:id_medecin AND date_rdv = :date_rdv)');
         $request->execute(array(

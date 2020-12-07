@@ -7,7 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
 ?>
 
     <!doctype html>
-    <html lang="en">
+    <html lang="fr">
     <body style="background-image: url('/Hopital/images/hero_bg_1.jpg');background-repeat: no-repeat">
     <div class="container">
         <h7>Informations personnelles</h7>
@@ -38,7 +38,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
         </td>
         </tbody>
     </table>
-    <table class="table table-bordered container" style="margin-top: 100px;background-color: rgba(170, 170, 170, 0.95)">
+    <div class="container">
+        <a href="../forms/new_dossier_patient.php" class="btn btn-primary">Dossier Patient</a>
+    </div>
+    <table class="table table-bordered container" style="margin-top: 30px;background-color: rgba(170, 170, 170, 0.95)">
         <thead>
         <tr>
             <th>Médecin</th>
@@ -50,6 +53,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
         </thead>
         <?php
         $manager = new manager();
+        if(unserialize($_SESSION['user'])->getRole_user() == 'medecin') {
+            $b = $manager->get_rdv_medecin(unserialize($_SESSION['user'])->getId());
+        }
         $b = $manager->get_rdv(unserialize($_SESSION['user'])->getId());
         ?>
         <tbody>
@@ -64,6 +70,36 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
         <?php }; ?>
         </tbody>
     </table>
+    <?php
+    $manager = new manager();
+    if(unserialize($_SESSION['user'])->getRole_user() == 'medecin') {
+    $b = $manager->get_rdv_medecin(unserialize($_SESSION['user'])->getId());
+
+    ?>
+    <table class="table table-bordered container" style="margin-top: 30px;background-color: rgba(170, 170, 170, 0.95)">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Horaire</th>
+            <th>Motif</th>
+            <th>Date du RDV</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach($a as $key=>$value) {?>
+            <tr>
+                <td> <?php echo 'Dr '.$value['nom'];?> </td>
+                <td> <?php echo $value['prenom']; ?> </td>
+                <td> <?php echo $value['nom_heure']; ?> </td>
+                <td> <?php echo $value['nom_motif']; ?> </td>
+                <td> <?php echo $value['date_rdv']; ?> </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+        <?php } ?>
     </body>
 
     </html>

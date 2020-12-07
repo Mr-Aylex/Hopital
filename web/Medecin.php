@@ -6,12 +6,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/entity/user.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
 $manager = new manager();
 $tab = $manager->get_spetialite();
-//$a = $manager->afficher_medecin();
 ?>
 <body style="background-image: url('/Hopital/images/medecin.jpg');background-repeat: no-repeat;">
 <div style="margin-top: 120px" class="container">
 
-    <input type="text" name="nom" id="nom" style="border-radius: 5px;border: #6c757d">
+    <input type="text" name="nom" id="nom" style="border-radius: 5px;border: #6c757d" placeholder="nom du medecin">
     <select name="spe" id="spe" style="height: 30px;border-radius: 5px;border: #6c757d">
         <option value="0">-- Spétialité --</option>
         <?php foreach($tab as $key=>$value) { ?>

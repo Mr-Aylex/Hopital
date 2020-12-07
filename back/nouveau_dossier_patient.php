@@ -4,4 +4,5 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Hopital/back/manager/manager.php');
 $dossier = new Dossier($_POST);
 $manager = new manager();
 $manager->add_dossier($dossier);
+header('Location: ../web/account.php');
 ?>

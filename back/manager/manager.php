@@ -94,7 +94,7 @@ class manager
         if(isset($array['spe']) and isset($array['nom'])) {
             $execute = array();
             if ($array['spe'] != '0' and $array['nom'] != '') {
-                $request = 'WHERE specialites.nom = :spe AND utilisateur.nom = :nom';
+                $request = 'WHERE specialites.id = :spe AND utilisateur.nom = :nom';
                 $execute['nom'] = $array['nom'];
                 $execute['spe'] = $array['spe'];
             }
@@ -111,8 +111,8 @@ class manager
 
         $req = $this->connexion_bdd()->prepare(
             'SELECT medecin.id, utilisateur.nom,id_specialite as id_spe,
- specialites.nom_spe as specialite FROM medecin 
- INNER JOIN specialites on specialites.id = medecin.id_specialite 
+ specialites.nom_spe as specialite FROM medecin
+ INNER JOIN specialites on specialites.id = medecin.id_specialite
  INNER JOIN utilisateur ON utilisateur.id = medecin.id_user '.$request);
         $a = $req->execute($execute);
         //$req->debugDumpParams();

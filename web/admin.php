@@ -10,6 +10,9 @@ include "../include/header.php";
     <div style="padding-top: 10px">
         <a href="../forms/nouveau_admin.php" class="btn btn-info">Ajouter un Admin</a>
     </div>
+    <div style="padding-top: 10px">
+       <a href="../forms/nouvelle_specialite.php" class="btn btn-info">Ajouter une spécialité</a>
+    </div>
     <div style="padding-top: 10px;">
         <form action="../back/export_backend.php" method="post">
           <input type="submit" class="btn btn-info" value="Exporter en XLS">
